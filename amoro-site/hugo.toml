@@ -9,16 +9,16 @@ sectionPagesMenu = "main"
   search = true
   description = "Management system for Lakehouse"
   docsBaseURL = ""
-  githuburl = "https://github.com/Netease/amoro"
+  githuburl = "https://github.com/apache/incubator-amoro"
 
 [[params.social]]
   title = "Github"
   icon = "github-fill"
-  url = "https://github.com/NetEase/amoro"
+  url = "https://github.com/apache/incubator-amoro"
 [[params.social]]
   title = "Issue Tracking"
   icon = "slack-square-fill"
-  url = "https://github.com/NetEase/amoro/issues"
+  url = "https://github.com/apache/incubator-amoro/issues"
 [[params.social]]
   title = "Wechat"
   icon = "wechat-fill"
@@ -65,9 +65,6 @@ home = [ "HTML", "RSS", "SearchIndex" ]
     { name = "Docs", weight = 200 },
     { name = "latest", parent = "Docs", url = "/docs/latest/", weight = 201 },
     { name = "0.6.1", parent = "Docs", url = "/docs/latest/", weight = 202 },
-    { name = "0.6.0", parent = "Docs", url = "/docs/0.6.0/", weight = 203 },
-    { name = "0.5.1", parent = "Docs", url = "/docs/0.5.1/", weight = 204 },
-    { name = "0.5.0", parent = "Docs", url = "/docs/0.5.0/", weight = 205 },
     { name = "Benchmark", weight = 300 },
     { name = "Benchmark Report", parent = "Benchmark", url = "/benchmark-report/", weight = 301 },
     { name = "Benchmark Guide", parent = "Benchmark", url = "/benchmark-guide/", weight = 302 },
