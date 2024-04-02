@@ -61,7 +61,7 @@
       <link>https://amoro.apache.org/roadmap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://amoro.apache.org/roadmap/</guid>
-      <description>Roadmap This roadmap displays the workings that the Amoro community plans to complete in 2023 and their priorities. Each item is associated with a Github issue, where you can learn about its specific design and latest developments.&#xA;Priority 1 Support managing tables with multiple formats under one Catalog Support automatically generating and managing Tags and Branchs for Table Provide standard SQL management instructions and command-line tools Support integration with Apache Paimon Integration with Kubernetes Priority 2 Support insert part of columns of arctic table with flink in streaming mode Support sorting table data during the self-optimizing process Support integration with Apache Hudi Support aggregation keys for mixed-format tables </description>
+      <description>Roadmap This roadmap displays the workings that the Amoro community plans to complete in 2024 and their priorities. Each item is associated with a Github issue, where you can learn about its specific design and latest developments.&#xA;Priority 1 Refactor AMS using function and process api Add metric collection for ams Support table sorting process Serverless process: automatic scaling for process resources Monitor the health status of tables Improve Mixed format Priority 2 Support Apache Hudi Support ingestion process Maintain secondary indexes on tables Collect scan metrics and improve optimizing rules based on them Enhance the management capabilities of the Paimon format </description>
     </item>
   </channel>
 </rss>
