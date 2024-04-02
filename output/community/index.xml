@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Communities on Amoro</title>
+    <link>https://amoro.apache.org/community/</link>
+    <description>Recent content in Communities on Amoro</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://amoro.apache.org/community/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How To Contribute</title>
+      <link>https://amoro.apache.org/how-to-contribute/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://amoro.apache.org/how-to-contribute/</guid>
+      <description>Contributing to Amoro Thanks for your interest in the Amoro project. Contributions are welcome and are greatly appreciated! Every little effort helps, and a credit will always be given.&#xA;This page provides some orientation and resources we have for you to get involved. It also offers recommendations on getting the best results when engaging with the community. We hope that this will be a pleasant first experience for you to return to continue contributing.</description>
+    </item>
+    <item>
+      <title>Join Community</title>
+      <link>https://amoro.apache.org/join-community/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://amoro.apache.org/join-community/</guid>
+      <description>Welcome to Amoro Amoro community is a free, open-source community project. Anyone interested in the Amoro project can join the community and contribute to its development by becoming a part of it.&#xA;This document describes the various roles within the community, including the responsibilities of the roles and the criteria for contribution&#xA;Roles and Responsibilities Amoro community is composed of and operated by the following roles:&#xA;User Contributor Active Contributor Committer PMC User Community users, as defined by Amoro, are those members of the community who have a need for the Amoro project.</description>
+    </item>
+  </channel>
+</rss>

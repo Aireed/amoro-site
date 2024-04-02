@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quickstarts on Amoro</title>
+    <link>https://amoro.apache.org/quickstart/</link>
+    <description>Recent content in Quickstarts on Amoro</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://amoro.apache.org/quickstart/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quick Demo</title>
+      <link>https://amoro.apache.org/quick-demo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://amoro.apache.org/quick-demo/</guid>
+      <description>Quick Demo This guide outlines the basic process of using Amoro, allowing you to quickly experience its core features. You can choose to use either the Iceberg Format or the Mixed-Iceberg Format to complete the entire process.&#xA;If you are more interested in the Mixed-Hive Format or the Paimon Format, you can refer to: Mixed-Hive Format and Paimon Format. For specific information on the different formats supported by Amoro, please refer to: Table Format.</description>
+    </item>
+    <item>
+      <title>Quickstart Setup</title>
+      <link>https://amoro.apache.org/quickstart-setup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://amoro.apache.org/quickstart-setup/</guid>
+      <description>Setup This guide describes two ways to deploy the Amoro demo environment: using docke-compose or release packages. If you want to deploy by compiling the source code, please refer to Deployment.&#xA;Setup from Docker-Compose The fastest way to deploy a Quick Demo environment is to use docker-compose.&#xA;Requirements Before starting to deploy Amoro based on Docker, please make sure that you have installed the docker-compose environment on your host. For information on how to install Docker, please refer to: Install Docker.</description>
+    </item>
+  </channel>
+</rss>

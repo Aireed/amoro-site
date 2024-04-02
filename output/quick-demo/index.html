@@ -1,0 +1,544 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Quick Demo</title>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/css/bootstrap.css" rel="stylesheet">
+
+
+<link href="/css/markdown.css" rel="stylesheet">
+<link href="/css/katex.min.css" rel="stylesheet">
+
+
+
+
+
+<link href="/css/amoro-theme.css" rel="stylesheet">
+
+
+<link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+<link href="/css/termynal.css" rel="stylesheet">
+
+<link href="/css/home-page.css" rel="stylesheet">
+
+
+    
+    
+    
+
+</head>
+<body>
+
+<head>
+    <script>
+        
+        function addAnchor(element) {
+            element.insertAdjacentHTML('beforeend', `<a href="#${element.id}" class="anchortag" ariaLabel="Anchor"> 🔗 </a>` )
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var headers = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]')
+            if (headers) {
+                headers.forEach(addAnchor)
+            }
+        });
+    </script>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <nav class="navbar navbar-default" role="navigation">
+        <topsection>
+            <div class="navbar-fixed-top">
+                <div>
+                <a class="page-scroll navbar-brand" href="https://amoro.netease.com/"><img class="top-navbar-logo" src="https://amoro.apache.org//img/amoro-logo-icon.png"/></a>
+                </div>
+            </div>
+            <div class="navbar-menu-fixed-top navbar-pages-group">
+                
+                
+                
+                
+                
+                    
+                    <div class="versions-dropdown">
+                    <div class="topnav-page-selection">
+                        <a   href="">Quickstart</a> <i class="fa fa-caret-down"></i>
+                    </div class="topnav-page-selection">
+                        <div class="versions-dropdown-content">
+                        <ul>
+                        
+                            <li class="topnav-page-selection">
+                            <a   href="/quickstart-setup/">Setup</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
+                            <a id="active"  href="/quick-demo/">Quick Demo</a>
+                            </li class="topnav-page-selection">
+                        
+                        </ul>
+                        </div>
+                    </div>
+                
+                
+                
+                
+                    
+                    <div class="versions-dropdown">
+                    <div class="topnav-page-selection">
+                        <a   href="">Docs</a> <i class="fa fa-caret-down"></i>
+                    </div class="topnav-page-selection">
+                        <div class="versions-dropdown-content">
+                        <ul>
+                        
+                            <li class="topnav-page-selection">
+                            <a   href="/docs/latest/">latest</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
+                            <a   href="/docs/latest/">0.6.1</a>
+                            </li class="topnav-page-selection">
+                        
+                        </ul>
+                        </div>
+                    </div>
+                
+                
+                
+                
+                    
+                    <div class="versions-dropdown">
+                    <div class="topnav-page-selection">
+                        <a   href="">Benchmark</a> <i class="fa fa-caret-down"></i>
+                    </div class="topnav-page-selection">
+                        <div class="versions-dropdown-content">
+                        <ul>
+                        
+                            <li class="topnav-page-selection">
+                            <a   href="/benchmark-report/">Benchmark Report</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
+                            <a   href="/benchmark-guide/">Benchmark Guide</a>
+                            </li class="topnav-page-selection">
+                        
+                        </ul>
+                        </div>
+                    </div>
+                
+                
+                
+                
+                    <div class="topnav-page-selection">
+                        <a   href="/download/">Download</a>
+                    </div class="topnav-page-selection">
+                
+                
+                
+                
+                    <div class="topnav-page-selection">
+                        <a   href="/roadmap/">Roadmap</a>
+                    </div class="topnav-page-selection">
+                
+                
+                
+                
+                    
+                    <div class="versions-dropdown">
+                    <div class="topnav-page-selection">
+                        <a   href="">Community</a> <i class="fa fa-caret-down"></i>
+                    </div class="topnav-page-selection">
+                        <div class="versions-dropdown-content">
+                        <ul>
+                        
+                            <li class="topnav-page-selection">
+                            <a   href="/join-community/">Join Community</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
+                            <a   href="/how-to-contribute/">How to contribute</a>
+                            </li class="topnav-page-selection">
+                        
+                        </ul>
+                        </div>
+                    </div>
+                
+                
+                <div class="topnav-page-selection">
+                    <a href="https://github.com/NetEase/amoro" target="_blank">
+                        <img src="https://amoro.apache.org//img/GitHub-Mark.png" target="_blank" class="top-navbar-logo"/>
+                    </a>
+                </div>
+            </div>
+            </topsection>
+    </nav>
+
+<body dir=" ltr">
+    <section>
+        <div class="grid-container toc-only">
+            
+            <div id="content" class="markdown-body">
+                <div class="margin-for-toc"><h1 id="quick-demo">Quick Demo</h1>
+<p>This guide outlines the basic process of using Amoro, allowing you to quickly experience its core features. You can choose to use either the <code>Iceberg Format</code> or the <code>Mixed-Iceberg Format</code> to complete the entire process.</p>
+<p>If you are more interested in the <code>Mixed-Hive Format</code> or the <code>Paimon Format</code>, you can refer to: <a href="/docs/latest/mixed-hive-format/">Mixed-Hive Format</a> and <a href="/docs/latest/paimon-format/">Paimon Format</a>. For specific information on the different formats supported by Amoro, please refer to: <a href="/docs/latest/formats-overview/">Table Format</a>.</p>
+<p>Before starting the quick demo, some steps are required to prepare the environment. Here are two ways to complete the necessary preparation:</p>
+<ul>
+<li><a href="/quickstart-setup/#setup-from-docker-composee">Setup from Docker-Compose</a></li>
+<li><a href="/quickstart-setup/#setup-from-binary-release">Setup from binary release</a></li>
+</ul>
+<h2 id="prepare-steps">Prepare steps</h2>
+<h3 id="create-optimizer-group">Create optimizer group</h3>
+<p>Open <a href="http://localhost:1630">http://localhost:1630</a> in a browser, enter <code>admin/admin</code> to log in to the dashboard.</p>
+<p>Click on <code>Optimizing</code> in the sidebar, choose <code>Optimizer Groups</code> and click <code>Add Group</code> button to create a new group befre creating catalog:</p>
+<p><img src="../images/quickstart/create-group.png" alt="Create group"></p>
+<h3 id="create-catalog">Create catalog</h3>
+<p>Click on <code>Catalogs</code> in the sidebar, click on the <code>+</code> button under Catalog List to create a test catalog, and name it to <code>demo_catalog</code>:</p>
+<div class="codetabs">
+<input id="spark-sql" type="radio" name="CreateCatalog" onclick="selectExampleLanguage('spark-queries', 'spark-sql')">
+<label for="spark-sql">Iceberg Format</label>
+<input id="spark-shell" type="radio" name="CreateCatalog" onclick="selectExampleLanguage('spark-queries', 'spark-shell')">
+<label for="spark-shell">Mixed-Iceberg Format</label>
+<codeblock class="spark-sql">
+      <p>To use the Iceberg Format, select <code>Type</code> as <code>Internal Catalog</code>, and choose <code>Iceberg</code> as <code>Table Format</code>.
+<img src="../images/quickstart/create-iceberg-catalog.png" alt="Create iceberg catalog"></p>
+</codeblock>
+<codeblock class="spark-shell">
+      <p>To use the Mixed-Iceberg Format, select <code>Type</code> as <code>Internal Catalog</code>, and choose <code>Mixed-Iceberg</code> as <code>Table Format</code>.
+<img src="../images/quickstart/create-mixed-catalog.png" alt="Create mixed catalog"></p>
+</codeblock>
+</div>
+<div class="info">
+    <p>If you deployed the demo environment using Docker-Compose:</p>
+<ul>
+<li>Hadoop configuration files are stored in <code>&lt;ARCIT-WORKSPACE&gt;/hadoop-config</code>.</li>
+<li>Warehouse path should be set to <code>hdfs://namenode:8020/user/arctic/demo_warehouse</code>.</li>
+</ul>
+<p>If you deployed the demo environment through binary release:</p>
+<ul>
+<li>Don&rsquo;t need to upload the Hadoop configuration files.</li>
+<li>Warehouse path should be set a directory which the hadoop user have the read and write privileges.</li>
+</ul>
+
+</div>
+<h3 id="start-optimizers">Start optimizers</h3>
+<p>Click on <code>Optimizing</code> in the sidebar, select the <code>Optimizer Group</code> tab, and click the <code>scale-out</code> operation for group <code>local</code>.</p>
+<p><img src="../images/quickstart/scale-out-optimizer.png" alt="Scale out optimizer"></p>
+<p>Set the concurrency of the optimizer to 1 and click <code>OK</code>.</p>
+<p>Then you can switch the tab to <code>Optimizers</code>, you can find the newly launched optimizer here.</p>
+<p><img src="../images/quickstart/optimizers.png" alt="Optimizers"></p>
+<div class="info">
+    You may need to wait for up to 30 seconds for the optimizer to register with AMS.
+</div>
+<h2 id="demo-setps">Demo setps</h2>
+<h3 id="initialize-tables">Initialize tables</h3>
+<p>Click on <code>Terminal</code> in the sidebar, you can create the test tables here using SQL. Terminal supports executing Spark SQL statements for now.</p>
+<div class="codetabs">
+<input id="spark-sql" type="radio" name="CreateATable" onclick="selectExampleLanguage('spark-queries', 'spark-sql')">
+<label for="spark-sql">Iceberg Format</label>
+<input id="spark-shell" type="radio" name="CreateATable" onclick="selectExampleLanguage('spark-queries', 'spark-shell')">
+<label for="spark-shell">Mixed-Iceberg Format</label>
+<codeblock class="spark-sql">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> db;
+</span></span><span style="display:flex;"><span>USE db;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#66d9ef">user</span> (
+</span></span><span style="display:flex;"><span>    id INT,
+</span></span><span style="display:flex;"><span>    name string,
+</span></span><span style="display:flex;"><span>    ts <span style="color:#66d9ef">TIMESTAMP</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">USING</span> iceberg 
+</span></span><span style="display:flex;"><span>PARTITIONED <span style="color:#66d9ef">BY</span> (days(ts));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> OVERWRITE <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">VALUES</span> 
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;eric&#34;</span>, <span style="color:#66d9ef">timestamp</span>(<span style="color:#e6db74">&#34;2022-07-01 12:32:00&#34;</span>)),
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#34;frank&#34;</span>, <span style="color:#66d9ef">timestamp</span>(<span style="color:#e6db74">&#34;2022-07-02 09:11:00&#34;</span>)),
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#34;lee&#34;</span>, <span style="color:#66d9ef">timestamp</span>(<span style="color:#e6db74">&#34;2022-07-02 10:11:00&#34;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">user</span>;
+</span></span></code></pre></div>
+</codeblock>
+<codeblock class="spark-shell">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> db;
+</span></span><span style="display:flex;"><span>USE db;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#66d9ef">user</span> (
+</span></span><span style="display:flex;"><span>    id INT,
+</span></span><span style="display:flex;"><span>    name string,
+</span></span><span style="display:flex;"><span>    ts <span style="color:#66d9ef">TIMESTAMP</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>(id)
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">USING</span> arctic 
+</span></span><span style="display:flex;"><span>PARTITIONED <span style="color:#66d9ef">BY</span> (days(ts));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> OVERWRITE <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">VALUES</span> 
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;eric&#34;</span>, <span style="color:#66d9ef">timestamp</span>(<span style="color:#e6db74">&#34;2022-07-01 12:32:00&#34;</span>)),
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#34;frank&#34;</span>, <span style="color:#66d9ef">timestamp</span>(<span style="color:#e6db74">&#34;2022-07-02 09:11:00&#34;</span>)),
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#34;lee&#34;</span>, <span style="color:#66d9ef">timestamp</span>(<span style="color:#e6db74">&#34;2022-07-02 10:11:00&#34;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">user</span>;
+</span></span></code></pre></div>
+</codeblock>
+</div>
+<p>Click on the <code>RUN</code> button uppon the SQL editor, and wait for the SQL query to finish executing. You can then see the query results under the SQL editor.</p>
+<h3 id="start-flink-ingestion-job">Start Flink ingestion job</h3>
+<p>If you have prepared the environment using Docker-Compose, you can open a terminal in docker using the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker exec -it quickdemo bash
+</span></span></code></pre></div><p>Then you can start the standalone Flink cluster using the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd &lt;FLINK_DIR&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./bin/start-cluster.sh
+</span></span></code></pre></div><p>After you start the Flink cluster, you can open the Flink dashboard by visiting <a href="http://localhost:8081">http://localhost:8081</a>.</p>
+<p>Then execute the following command to start the Flink SQL Client:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./bin/sql-client.sh embedded
+</span></span></code></pre></div><p>Enter the following SQL statements one by one to start the Flink ingestion job since the Flink SQL Client does not support batch SQL input:</p>
+<div class="codetabs">
+<input id="spark-sql" type="radio" name="StartFlinkJob" onclick="selectExampleLanguage('spark-queries', 'spark-sql')">
+<label for="spark-sql">Iceberg Format</label>
+<input id="spark-shell" type="radio" name="StartFlinkJob" onclick="selectExampleLanguage('spark-queries', 'spark-shell')">
+<label for="spark-shell">Mixed-Iceberg Format</label>
+<codeblock class="spark-sql">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">CATALOG</span> iceberg_catalog <span style="color:#66d9ef">WITH</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;type&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;iceberg&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;catalog-impl&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;org.apache.iceberg.rest.RESTCatalog&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;uri&#39;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;http://127.0.0.1:1630/api/iceberg/rest&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;warehouse&#39;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;demo_catalog&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Recreate table with Flink as Only Flink support primary key for iceberg format table
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>iceberg_catalog<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>db<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span><span style="color:#66d9ef">user</span><span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>iceberg_catalog<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>db<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span><span style="color:#66d9ef">user</span><span style="color:#f92672">`</span> (
+</span></span><span style="display:flex;"><span>    id INT,
+</span></span><span style="display:flex;"><span>    name string,
+</span></span><span style="display:flex;"><span>    ts TIMESTAMP_LTZ,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>(id) <span style="color:#66d9ef">NOT</span> ENFORCED
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">with</span> (<span style="color:#e6db74">&#39;format-version&#39;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#39;write.upsert.enabled&#39;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;true&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> iceberg_catalog.<span style="color:#f92672">`</span>db<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span><span style="color:#66d9ef">user</span><span style="color:#f92672">`</span> (id, name, ts) <span style="color:#66d9ef">VALUES</span> 
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;eric&#39;</span>, <span style="color:#66d9ef">CAST</span>(<span style="color:#e6db74">&#39;2022-07-01 12:32:00&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">TIMESTAMP</span>)),
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;frank&#39;</span>, <span style="color:#66d9ef">CAST</span>(<span style="color:#e6db74">&#39;2022-07-02 09:11:00&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">TIMESTAMP</span>)),
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;lee&#39;</span>, <span style="color:#66d9ef">CAST</span>(<span style="color:#e6db74">&#39;2022-07-02 10:11:00&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">TIMESTAMP</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Create CDC socket source table
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> cdc_source(
+</span></span><span style="display:flex;"><span>  id      INT,
+</span></span><span style="display:flex;"><span>  name    STRING,
+</span></span><span style="display:flex;"><span>  op_time STRING
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">WITH</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;connector&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;socket&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;hostname&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;localhost&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;port&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;9999&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;format&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;changelog-csv&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;changelog-csv.column-delimiter&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;|&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Disable Flink engine form filtering on Delete data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">set</span> <span style="color:#66d9ef">table</span>.<span style="color:#66d9ef">exec</span>.sink.upsert<span style="color:#f92672">-</span>materialize<span style="color:#f92672">=</span><span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Start the Flink ingestion job
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>iceberg_catalog<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>db<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span><span style="color:#66d9ef">user</span><span style="color:#f92672">`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id,
+</span></span><span style="display:flex;"><span>       name,
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">CAST</span>(TO_TIMESTAMP(op_time) <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">TIMESTAMP</span>(<span style="color:#ae81ff">6</span>) <span style="color:#66d9ef">WITH</span> <span style="color:#66d9ef">LOCAL</span> TIME <span style="color:#66d9ef">ZONE</span>) ts
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> cdc_source;
+</span></span></code></pre></div>
+</codeblock>
+<codeblock class="spark-shell">
+      <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">CATALOG</span> arctic_catalog <span style="color:#66d9ef">WITH</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;type&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;arctic&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;metastore.url&#39;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;thrift://127.0.0.1:1260/demo_catalog&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Create CDC socket source table
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> cdc_source(
+</span></span><span style="display:flex;"><span>  id      INT,
+</span></span><span style="display:flex;"><span>  name    STRING,
+</span></span><span style="display:flex;"><span>  op_time STRING
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">WITH</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;connector&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;socket&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;hostname&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;localhost&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;port&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;9999&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;format&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;changelog-csv&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;changelog-csv.column-delimiter&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;|&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Disable Flink engine form filtering on Delete data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">set</span> <span style="color:#66d9ef">table</span>.<span style="color:#66d9ef">exec</span>.sink.upsert<span style="color:#f92672">-</span>materialize<span style="color:#f92672">=</span><span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Start the Flink ingestion job
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>arctic_catalog<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>db<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span><span style="color:#66d9ef">user</span><span style="color:#f92672">`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id,
+</span></span><span style="display:flex;"><span>       name,
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">CAST</span>(TO_TIMESTAMP(op_time) <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">TIMESTAMP</span>(<span style="color:#ae81ff">6</span>) <span style="color:#66d9ef">WITH</span> <span style="color:#66d9ef">LOCAL</span> TIME <span style="color:#66d9ef">ZONE</span>) ts
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> cdc_source;
+</span></span></code></pre></div>
+</codeblock>
+</div>
+<p>Open a new terminal. If you deployed the demo environment using Docker-Compose, you can use the following command to reopen a terminal of the container. The required commands are already installed inside the container.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker exec -it quickdemo bash
+</span></span></code></pre></div><p>Execute the following command in the newly opened terminal. It will open a socket channel to the <code>cdc_source</code> table, allowing us to insert some test data into the table.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>nc -l -p <span style="color:#ae81ff">9999</span> -k
+</span></span></code></pre></div><div class="info">
+    if you are in MacOS and run quick demo in local. run <code>nc -lk 9999</code> instead.
+</div>
+<p>Send the following content into the socket channel, and make sure to add a break line after the last line of data to ensure that the last line of data is correctly sent.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>INSERT|4|rock|2022-07-02 09:01:00
+</span></span><span style="display:flex;"><span>INSERT|5|jack|2022-07-02 12:11:40
+</span></span><span style="display:flex;"><span>INSERT|6|mars|2022-07-02 11:19:10
+</span></span></code></pre></div><p>Wait for at least 10 seconds (depending on the checkpoint interval configured in flink-conf.yaml), open the <code>Dashboard</code> and go to the <code>Terminal</code> page, then execute:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> db.<span style="color:#66d9ef">user</span> <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> id;
+</span></span></code></pre></div><p>You will get the following execution result:</p>
+<p><img src="../images/quickstart/upsert-result.png" alt="Upsert result"></p>
+<p>Continue to send the following data into the socket channel:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>DELETE|1|eric|2022-07-01 12:32:00
+</span></span><span style="display:flex;"><span>INSERT|7|randy|2022-07-03 19:11:00
+</span></span><span style="display:flex;"><span>DELETE|4|rock|2022-07-02 09:01:00
+</span></span><span style="display:flex;"><span>DELETE|3|lee|2022-07-02 10:11:00
+</span></span></code></pre></div><p>Query the content of the test table by <code>Terminal</code> again, you will get the following result this time：</p>
+<p><img src="../images/quickstart/upsert-result2.png" alt="Upsert result2"></p>
+<h3 id="check-self-optimizing">Check self-optimizing</h3>
+<p>As new data is written to the table, Amoro will automatically trigger self-optimizing on the table.</p>
+<p>Click on <code>Tables</code> in the sidebar, select the test table to enter the table details page, switch to the <code>Optimizing</code> tab, where you can see all the self-optimizing tasks on the table.</p>
+<p><img src="../images/quickstart/table-optimizing-history.png" alt="Table optimizing history"></p>
+<p>You can also enter the <code>Optimizing</code> page through the the sidebar to view the current optimizing status of all tables.</p>
+<p><img src="../images/quickstart/table-optimizing-status.png" alt="Table optimizing status"></p>
+<p>For more information on Self-Optimizing, please refer to: <a href="/docs/latest/self-optimizing/">Self-optimizing</a></p>
+</div>
+                
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="toc" class="markdown-body">
+    <div id="full">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#prepare-steps">Prepare steps</a>
+      <ul>
+        <li><a href="#create-optimizer-group">Create optimizer group</a></li>
+        <li><a href="#create-catalog">Create catalog</a></li>
+        <li><a href="#start-optimizers">Start optimizers</a></li>
+      </ul>
+    </li>
+    <li><a href="#demo-setps">Demo setps</a>
+      <ul>
+        <li><a href="#initialize-tables">Initialize tables</a></li>
+        <li><a href="#start-flink-ingestion-job">Start Flink ingestion job</a></li>
+        <li><a href="#check-self-optimizing">Check self-optimizing</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://amoro.apache.org//js/jquery-1.11.0.js"></script>
+
+
+<script src="https://amoro.apache.org//js/jquery.easing.min.js"></script>
+
+
+<script type="text/javascript" src="https://amoro.apache.org//js/search.js"></script>
+
+
+<script src="https://amoro.apache.org//js/bootstrap.min.js"></script>
+
+
+<script src="https://amoro.apache.org//js/iceberg-theme.js"></script>
+
+
+
+</html>
