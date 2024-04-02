@@ -539,7 +539,7 @@
             
             <div id="content" class="markdown-body">
                 <div class="margin-for-toc"><h1 id="deployment">Deployment</h1>
-<p>You can choose to download the stable release package from <a href="../../../download/">download page</a>, or the source code form <a href="https://github.com/NetEase/amoro">Github</a> and compile it according to the README.</p>
+<p>You can choose to download the stable release package from <a href="../../../download/">download page</a>, or the source code form <a href="https://github.com/apache/incubator-amoro">Github</a> and compile it according to the README.</p>
 <h2 id="system-requirements">System requirements</h2>
 <ul>
 <li>Java 8 is required. Java 17 is required for Trino.</li>
@@ -555,7 +555,7 @@ You can download amoro-x.y.z-bin.zip (x.y.z is the release number), and you can 
 Unzip it to create the amoro-x.y.z directory in the same directory, and then go to the amoro-x.y.z directory.</p>
 <h2 id="source-code-compilation">Source code compilation</h2>
 <p>You can build based on the master branch without compiling Trino. The compilation method and the directory of results are described below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git clone https://github.com/NetEase/amoro.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git clone https://github.com/apache/incubator-amoro.git
 </span></span><span style="display:flex;"><span>cd amoro
 </span></span><span style="display:flex;"><span>base_dir<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span> 
 </span></span><span style="display:flex;"><span>mvn clean package -DskipTests -pl <span style="color:#e6db74">&#39;!Trino&#39;</span>

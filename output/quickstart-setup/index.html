@@ -257,7 +257,7 @@
 <h3 id="bring-up-demo-cluster">Bring up demo cluster</h3>
 <p>Before starting, please prepare a clean directory as the workspace for Amoro Demo deployment, and obtain the Amoro demo deployment script:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd &lt;AMORO-WORKSPACE&gt;
-</span></span><span style="display:flex;"><span>wget https://raw.githubusercontent.com/NetEase/amoro/master/docker/demo-cluster.sh
+</span></span><span style="display:flex;"><span>wget https://raw.githubusercontent.com/apache/incubator-amoro/master/docker/demo-cluster.sh
 </span></span></code></pre></div><p>Execute the following shell command to launch a demo cluster using docker-compose:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>bash demo-cluster.sh start
 </span></span></code></pre></div><p>After executing the above command, there will be a <code>data</code> directory in the workspace directory for sharing files between different docker containers. You can use the following command to view all the running Docker containers:</p>
@@ -280,7 +280,7 @@ Please make sure that there is no <code>HADOOP_HOME</code> or <code>HADOOP_CONF_
 </span></span><span style="display:flex;"><span>export AMORO_VERSION<span style="color:#f92672">=</span>0.6.0
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Download the binary package of AMS</span>
-</span></span><span style="display:flex;"><span>wget https://github.com/NetEase/amoro/releases/download/v<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>/amoro-<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>-bin.zip
+</span></span><span style="display:flex;"><span>wget https://github.com/apache/incubator-amoro/releases/download/v<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>/amoro-<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>-bin.zip
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Unzip the pakage</span>
 </span></span><span style="display:flex;"><span>unzip amoro-<span style="color:#e6db74">${</span>AMORO-VERSION<span style="color:#e6db74">}</span>-bin.zip
@@ -301,7 +301,7 @@ Please make sure that there is no <code>HADOOP_HOME</code> or <code>HADOOP_CONF_
 </span></span><span style="display:flex;"><span>APACHE_FLINK_URL<span style="color:#f92672">=</span>archive.apache.org/dist/flink
 </span></span><span style="display:flex;"><span>MAVEN_URL<span style="color:#f92672">=</span>https://repo1.maven.org/maven2
 </span></span><span style="display:flex;"><span>FLINK_CONNECTOR_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MAVEN_URL<span style="color:#e6db74">}</span>/org/apache/flink
-</span></span><span style="display:flex;"><span>AMORO_CONNECTOR_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MAVEN_URL<span style="color:#e6db74">}</span>/com/netease/amoro
+</span></span><span style="display:flex;"><span>AMORO_CONNECTOR_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MAVEN_URL<span style="color:#e6db74">}</span>/com/apache/incubator-amoro
 </span></span><span style="display:flex;"><span>ICEBERG_CONNECTOR_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MAVEN_URL<span style="color:#e6db74">}</span>/org/apache/iceberg
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Download FLink binary package</span>
