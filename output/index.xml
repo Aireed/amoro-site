@@ -19,7 +19,7 @@
       <link>https://amoro.apache.org/download/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://amoro.apache.org/download/</guid>
-      <description>Download Please choose an Amoro version to download from the blowing tables, the latest release is recommended.&#xA;The latest release Version Date Source AMS Flink Runtime Jars Spark Runtime Jars Trino Connector Release Notes 0.6.1 (non-Apache) 2024 Feb 21 source - AMS(hadoop3) - AMS(hadoop2) - Flink 1.15 Runtime Jar - Flink 1.16 Runtime Jar - Flink 1.17 Runtime Jar - Spark 3.1 Runtime Jar&#xA;- Spark 3.2 Runtime Jar&#xA;- Spark 3.</description>
+      <description>Download Please choose an Amoro version to download from the following tables. It is recommended you use the latest release.&#xA;The latest release Coming soon!&#xA;Non-Apache releases These releases were made before the Amoro project joined the ASF Incubator and have not followed the usual ASF release process.&#xA;Version Date Source AMS Flink Runtime Jars Spark Runtime Jars Trino Connector Release Notes 0.6.1 (non-Apache) 2024 Feb 21 source - AMS(hadoop3) - AMS(hadoop2) - Flink 1.</description>
     </item>
     <item>
       <title>How To Benchmark</title>
