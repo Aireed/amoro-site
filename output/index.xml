@@ -54,7 +54,7 @@
       <link>https://amoro.apache.org/quickstart-setup/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://amoro.apache.org/quickstart-setup/</guid>
-      <description>Setup This guide describes two ways to deploy the Amoro demo environment: using docke-compose or release packages. If you want to deploy by compiling the source code, please refer to Deployment.&#xA;Setup from Docker-Compose The fastest way to deploy a Quick Demo environment is to use docker-compose.&#xA;Requirements Before starting to deploy Amoro based on Docker, please make sure that you have installed the docker-compose environment on your host. For information on how to install Docker, please refer to: Install Docker.</description>
+      <description>Setup This guide describes two ways to deploy the Amoro demo environment: docker-compose or release packages. If you want to deploy by compiling the source code, please refer to Deployment.&#xA;Setup from Docker-Compose The fastest way to deploy a Quick Demo environment is to use docker-compose.&#xA;Requirements Before starting to deploy Amoro based on Docker, please make sure that you have installed the docker-compose environment on your host. For information on installing Docker, please refer to Install Docker.</description>
     </item>
     <item>
       <title>Roadmap</title>

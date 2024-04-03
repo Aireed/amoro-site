@@ -245,15 +245,15 @@
             
             <div id="content" class="markdown-body">
                 <div class="margin-for-toc"><h1 id="setup">Setup</h1>
-<p>This guide describes two ways to deploy the Amoro demo environment: using docke-compose or release packages. If you want to deploy by compiling the source code, please refer to <a href="/docs/latest/deployment/">Deployment</a>.</p>
+<p>This guide describes two ways to deploy the Amoro demo environment: docker-compose or release packages. If you want to deploy by compiling the source code, please refer to <a href="/docs/latest/deployment/">Deployment</a>.</p>
 <h2 id="setup-from-docker-compose">Setup from Docker-Compose</h2>
 <p>The fastest way to deploy a <a href="/quick-demo/">Quick Demo</a> environment is to use docker-compose.</p>
 <h3 id="requirements">Requirements</h3>
-<p>Before starting to deploy Amoro based on Docker, please make sure that you have installed the docker-compose environment on your host. For information on how to install Docker, please refer to: <a href="https://docs.docker.com/get-docker/">Install Docker</a>.</p>
+<p>Before starting to deploy Amoro based on Docker, please make sure that you have installed the docker-compose environment on your host. For information on installing Docker, please refer to <a href="https://docs.docker.com/get-docker/">Install Docker</a>.</p>
 <div class="info">
-    It is recommended to perform the operation on Linux or MacOS. If you are using a Windows system, you can consider using WSL2. For information on how to enable WSL2 and install Docker, please refer to <a href="https://docs.docker.com/desktop/install/windows-install/">Windows Installation</a>.
+    Linux or MacOS is recommended for use. If you are using a Windows system, consider using WSL2. For information on how to enable WSL2 and install Docker, please refer to <a href="https://docs.docker.com/desktop/install/windows-install/">Windows Installation</a>.
 </div>
-<p>After completing the Docker installation, please make sure that the docker-compose tool is installed: <a href="https://github.com/docker/compose-cli/blob/main/INSTALL.md">Docker-Compose Installation</a>.</p>
+<p>After completing the Docker installation, please make sure that the docker-compose tool is installed <a href="https://github.com/docker/compose-cli/blob/main/INSTALL.md">Docker-Compose Installation</a>.</p>
 <h3 id="bring-up-demo-cluster">Bring up demo cluster</h3>
 <p>Before starting, please prepare a clean directory as the workspace for Amoro Demo deployment, and obtain the Amoro demo deployment script:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd &lt;AMORO-WORKSPACE&gt;
@@ -268,10 +268,10 @@
 </span></span><span style="display:flex;"><span>8e6b1c36e6ba   namenode    Up <span style="color:#ae81ff">1</span> minutes
 </span></span><span style="display:flex;"><span>1e11fb8187b3   quickdemo   Up <span style="color:#ae81ff">1</span> minutes
 </span></span></code></pre></div><h2 id="setup-from-binary-release">Setup from binary release</h2>
-<p>If it is not convenient to install Docker and related tools, you can also deploy the Amoro demo cluster directly through the Amoro release package.</p>
+<p>If installing Docker and related tools is not convenient, you can also deploy the Amoro demo cluster directly through the Amoro release package.</p>
 <h3 id="requirements-1">Requirements</h3>
 <p>Before starting, please make sure that Java 8 is installed and the JAVA_HOME environment variable is set.
-Please make sure that there is no <code>HADOOP_HOME</code> or <code>HADOOP_CONF_DIR</code> in the environment variables. If there are, please unset these environment variables first.</p>
+Please make sure that <code>HADOOP_HOME</code> or <code>HADOOP_CONF_DIR</code> is not in the environment variables. If it is, please unset it first.</p>
 <h3 id="setup-ams">Setup AMS</h3>
 <p>Prepare a clean directory as the workspace for the Amoro demo cluster, and execute the following command to download Amoro and start AMS:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd &lt;AMORO-WORKSPACE&gt;
@@ -282,14 +282,14 @@ Please make sure that there is no <code>HADOOP_HOME</code> or <code>HADOOP_CONF_
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Download the binary package of AMS</span>
 </span></span><span style="display:flex;"><span>wget https://github.com/apache/incubator-amoro/releases/download/v<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>/amoro-<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>-bin.zip
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Unzip the pakage</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Unzip the package</span>
 </span></span><span style="display:flex;"><span>unzip amoro-<span style="color:#e6db74">${</span>AMORO-VERSION<span style="color:#e6db74">}</span>-bin.zip
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Start AMS by script</span>
 </span></span><span style="display:flex;"><span>cd amoro-<span style="color:#e6db74">${</span>AMORO-VERSION<span style="color:#e6db74">}</span> <span style="color:#f92672">&amp;&amp;</span> ./bin/ams.sh start
-</span></span></code></pre></div><p>Access <a href="http://127.0.0.1:1630/">http://127.0.0.1:1630/</a> with a browser and log in to the system with <code>admin/admin</code>. If you can log in successfully, it means that the deployment of AMS is successful.</p>
+</span></span></code></pre></div><p>Access <a href="http://127.0.0.1:1630/">http://127.0.0.1:1630/</a> with a browser and log in to the system with <code>admin/admin</code>. If you can log in successfully, the deployment of AMS is successful.</p>
 <h3 id="setup-flink-environment">Setup Flink environment</h3>
-<p>Before starting the Quick Demo, you also need to deploy the Flink execution environment. Execute the following command to download the Flink binary distribution package:</p>
+<p>Before starting the Quick Demo, you must also deploy the Flink execution environment. Execute the following command to download the Flink binary distribution package:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd &lt;AMORO-WORKSPACE&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Rplace version value with the latest Amoro version if needed</span>
@@ -322,7 +322,7 @@ Please make sure that there is no <code>HADOOP_HOME</code> or <code>HADOOP_CONF_
 </span></span><span style="display:flex;"><span>mv amoro-flink-runtime-<span style="color:#e6db74">${</span>FLINK_MAJOR_VERSION<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>.jar lib
 </span></span><span style="display:flex;"><span>mv iceberg-flink-runtime-<span style="color:#e6db74">${</span>FLINK_MAJOR_VERSION<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>ICEBERG_VERSION<span style="color:#e6db74">}</span>.jar lib
 </span></span><span style="display:flex;"><span>cp examples/table/ChangelogSocketExample.jar lib
-</span></span></code></pre></div><p>Finally, we need to make some modifications to the <code>flink-conf.yaml</code> configuration file.</p>
+</span></span></code></pre></div><p>Finally, you must modify the <code>flink-conf.yaml</code> configuration file.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim conf/flink-conf.yaml
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Increase the number of slots to run more streaming tasks</span>
