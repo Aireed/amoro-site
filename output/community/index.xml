@@ -4,7 +4,7 @@
     <title>Communities on Apache Amoro™</title>
     <link>https://amoro.apache.org/community/</link>
     <description>Recent content in Communities on Apache Amoro™</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo 0.125.0</generator>
     <language>en-us</language>
     <atom:link href="https://amoro.apache.org/community/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -19,7 +19,7 @@
       <link>https://amoro.apache.org/join-community/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://amoro.apache.org/join-community/</guid>
-      <description>Welcome to Amoro Amoro community is a free, open-source community project. Anyone interested in the Amoro project can join the community and contribute to its development by becoming a part of it.&#xA;This document describes some guidelines for joining the Amoro community.&#xA;Mailing Lists Amoro has three mailing lists:&#xA;Developers: dev@amoro.apache.org &amp;ndash; used for community discussions Subscribe Unsubscribe Archive Commits: commits@amoro.apache.org &amp;ndash; distributes commit notifications Subscribe Unsubscribe Archive Private: private@amoro.apache.org &amp;ndash; private list for the PPMC to discuss sensitive issues related to the health of the project Archive Roles and Responsibilities Amoro community is composed of and operated by the following roles:</description>
+      <description>Welcome to Apache Amoro (incubating) Amoro community is a free, open-source community project. Anyone interested in the Amoro project can join the community and contribute to its development by becoming a part of it.&#xA;This document describes some guidelines for joining the Amoro community.&#xA;Mailing Lists List Name Address Subscribe Unsubscribe Archive Developer List dev@amoro.apache.org subscribe unsubscribe archive Commits List commits@amoro.apache.org subscribe unsubscribe archive Roles and Responsibilities Amoro community is composed of and operated by the following roles:</description>
     </item>
   </channel>
 </rss>
