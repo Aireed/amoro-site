@@ -322,10 +322,10 @@ Please make sure that <code>HADOOP_HOME</code> or <code>HADOOP_CONF_DIR</code> i
 </span></span><span style="display:flex;"><span>wget https://github.com/apache/incubator-amoro/releases/download/v<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>/amoro-<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>-bin.zip
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Unzip the package</span>
-</span></span><span style="display:flex;"><span>unzip amoro-<span style="color:#e6db74">${</span>AMORO-VERSION<span style="color:#e6db74">}</span>-bin.zip
+</span></span><span style="display:flex;"><span>unzip amoro-<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span>-bin.zip
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Start AMS by script</span>
-</span></span><span style="display:flex;"><span>cd amoro-<span style="color:#e6db74">${</span>AMORO-VERSION<span style="color:#e6db74">}</span> <span style="color:#f92672">&amp;&amp;</span> ./bin/ams.sh start
+</span></span><span style="display:flex;"><span>cd amoro-<span style="color:#e6db74">${</span>AMORO_VERSION<span style="color:#e6db74">}</span> <span style="color:#f92672">&amp;&amp;</span> ./bin/ams.sh start
 </span></span></code></pre></div><p>Access <a href="http://127.0.0.1:1630/">http://127.0.0.1:1630/</a> with a browser and log in to the system with <code>admin/admin</code>. If you can log in successfully, the deployment of AMS is successful.</p>
 <h3 id="setup-flink-environment">Setup Flink environment</h3>
 <p>Before starting the Quick Demo, you must also deploy the Flink execution environment. Execute the following command to download the Flink binary distribution package:</p>
