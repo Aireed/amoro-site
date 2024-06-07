@@ -4,7 +4,7 @@
     <title>Engines on Amoro</title>
     <link>https://amoro.apache.org/docs/0.6.1/engines/</link>
     <description>Recent content in Engines on Amoro</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="https://amoro.apache.org/docs/0.6.1/engines/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -12,7 +12,7 @@
       <link>https://amoro.apache.org/docs/0.6.1/flink-datastream/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://amoro.apache.org/docs/0.6.1/flink-datastream/</guid>
-      <description>Flink DataStream Reading with DataStream Amoro supports reading data in Batch or Streaming mode through Java API.&#xA;Batch mode Using Batch mode to read the full and incremental data in the FileStore.&#xA;Non-primary key tables support reading full data in batch mode, snapshot data with a specified snapshot-id or timestamp, and incremental data with a specified snapshot interval. The primary key table temporarily only supports reading the current full amount and later CDC data.</description>
+      <description>Flink DataStream Add maven dependency To add a dependency on Mixed-format flink connector in Maven, add the following to your pom.xml: &amp;hellip; com.netease.arctic amoro-flink-${flink.minor-version} ${amoro-mixed-format-flink.version} &amp;hellip; Reading with DataStream Amoro supports reading data in Batch or Streaming mode through Java API.&#xA;Batch mode Using Batch mode to read the full and incremental data in the FileStore.&#xA;Non-primary key tables support reading full data in batch mode, snapshot data with a specified snapshot-id or timestamp, and incremental data with a specified snapshot interval.</description>
     </item>
     <item>
       <title>Flink DDL</title>
