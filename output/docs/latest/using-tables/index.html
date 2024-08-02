@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,7 +585,23 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="using-tables">Using Tables</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="using-tables">Using Tables</h1>
 <p>The SQL execution tool <code>Terminal</code> is provided in AMS dashboard to help users quickly create, modify and delete tables.
 It is also available in <a href="../spark-ddl/">Spark</a> and <a href="../flink-ddl/">Flink</a> and other engines to manage tables using SQL.</p>
 <h2 id="create-table">Create table</h2>
@@ -588,7 +612,7 @@ The following is an example of table creation:</p>
 </span></span><span style="display:flex;"><span>  name string,
 </span></span><span style="display:flex;"><span>  op_time <span style="color:#66d9ef">timestamp</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>(id)
-</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">using</span> arctic
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">using</span> mixed_iceberg
 </span></span><span style="display:flex;"><span>partitioned <span style="color:#66d9ef">by</span>(days(op_time))
 </span></span><span style="display:flex;"><span>tblproperties(
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;log-store.enable&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;true&#39;</span>,
@@ -609,7 +633,7 @@ It is generally used to observe the write progress of a table and can also serve
 <p>In the example above, op_time is set as the event time field of the table, and the op_time of the written data is used to calculate the watermark of the table.
 To handle out-of-order writes, the permitted lateness of data when calculating the watermark is set to one minute.
 You can view the current watermark of the table in the table details on the AMS Dashboard at AMS dashboard.</p>
-<p><img src="../images/admin/watermark_table_detail.png" alt="arctic-table-watermark"></p>
+<p><img src="../images/admin/watermark_table_detail.png" alt="mixed-format-table-watermark"></p>
 <p>You can also use the following SQL statement in the <code>Terminal</code> to query the watermark of a table:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SHOW</span> TBLPROPERTIES test_db.test_log_store (<span style="color:#e6db74">&#39;watermark.table&#39;</span>);
 </span></span></code></pre></div><p>You can expect to get the following results:</p>
@@ -663,11 +687,11 @@ it&rsquo;s also necessary for AMS to have the data expiration thread enabled. Yo
 <p>By default, Amoro has data expiration disabled. If you want to enable data expiration, please execute the following command.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> test_db.test_log_store <span style="color:#66d9ef">set</span> tblproperties (
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;data-expire.enabled&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;true&#39;</span>);
-</span></span></code></pre></div><h3 id="set-the-data-retention-period">Set the data retention period</h3>
+</span></span></code></pre></div><h3 id="set-retention-period">Set retention period</h3>
 <p>The configuration for data retention duration consists of a number and a unit. For example, &lsquo;90d&rsquo; represents retaining data for 90 days, and &lsquo;12h&rsquo; indicates 12 hours.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> test_db.test_log_store <span style="color:#66d9ef">set</span> tblproperties (
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;data-expire.retention-time&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;90d&#39;</span>);
-</span></span></code></pre></div><h3 id="select-the-event-time-field">Select the event-time field</h3>
+</span></span></code></pre></div><h3 id="select-expiration-field">Select expiration field</h3>
 <p>Data expiration requires users to specify a field for determining expiration.
 In addition to supporting timestampz/timestamp field types for this purpose, it also supports string and long field type.
 String field require a date pattern for proper parsing, with the default format being &lsquo;yyyy-MM-dd&rsquo;. Additionally, long fields can be chosen as the expiration event time, but you need to specify the timestamp&rsquo;s unit, which can be in <code>TIMESTAMP_MS</code> or <code>TIMESTAMP_S</code>.
@@ -684,15 +708,74 @@ Note that timestamp, timestampz, and long field types use UTC, while others use 
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> test_db.test_log_store <span style="color:#66d9ef">set</span> tblproperties (
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;data-expire.field&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;op_time&#39;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;data-expire.datetime-number-format&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;TIMESTAMP_MS&#39;</span>);
-</span></span></code></pre></div><h3 id="adjust-the-data-expiration-level">Adjust the data expiration level</h3>
+</span></span></code></pre></div><h3 id="adjust-expiration-level">Adjust expiration level</h3>
 <p>Data expiration supports two levels, including <code>PARTITION</code> and <code>FILE</code>. The default level is <code>PARTITION</code>, which means that AMS deletes files only when all the files within a partition have expired.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> test_db.test_log_store <span style="color:#66d9ef">set</span> tblproperties (
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;data-expire.level&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;partition&#39;</span>);
+</span></span></code></pre></div><h3 id="specify-start-time">Specify start time</h3>
+<p>Amoro expire data since <code>LAST_COMMIT_TIME</code> or <code>CURRENT_TIME</code>. <code>LAST_COMMIT_TIME</code> will follow the timestamp of the table&rsquo;s most recent snapshot as the start time of the expiration, which ensures that the table has <code>data-expire.retention-time</code> data; while <code>CURRENT_TIME</code> will follow the current time of the service.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> test_db.test_log_store <span style="color:#66d9ef">set</span> tblproperties (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;data-expire.base-on-rule&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;CURRENT_TIME&#39;</span>);
 </span></span></code></pre></div><h2 id="delete-table">Delete table</h2>
 <p>After logging into the AMS Dashboard. To modify a table, enter the modification statement in the <code>terminal</code> and execute it.</p>
 <p>Here is an example of how to delete a table：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> test_db.test_log_store;
 </span></span></code></pre></div><p>The current terminal is using the Spark engine to execute SQL. For more information about deleting tables, you can refer to  <a href="../spark-ddl/#drop-table">Spark DDL</a>.</p>
+<h2 id="explore-table-details">Explore table details</h2>
+<p>The Amoro Tables details page provides multiple tabs to display the status of the table from various dimensions, mainly including:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Tab Name</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Details</td>
+<td>Display the table&rsquo;s schema, primary key configuration, partition configuration, properties; as well as the metric information of the files stored in ChangeStore and BaseStore, including the number of files and average file size, as well as the latest submission time of the files.</td>
+</tr>
+<tr>
+<td>Files</td>
+<td>Display all partitions and files of the table.</td>
+</tr>
+<tr>
+<td>Snapshots</td>
+<td>Display all snapshots of the table, which can be filtered by branch and tag.</td>
+</tr>
+<tr>
+<td>Optimizing</td>
+<td>Display all the self-optimizing processes of the table, each record shows the number and average size of files before and after Optimize, as well as the execution time of each process.</td>
+</tr>
+<tr>
+<td>Operations</td>
+<td>Display the current table&rsquo;s DDL historical change records.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../images/admin/table_metrics.png" alt="table-details"></p>
+<p><img src="../images/admin/table_optimizer_history.png" alt="table-optimize-history"></p>
+<h2 id="explore-self-optimizing-status">Explore self-optimizing status</h2>
+<p>The Optimizing page displays self-optimizing status of all tables.
+<img src="../images/admin/optimizer_metrics.png" alt="optimizing-metrics"></p>
+<ul>
+<li><strong>Optimizing Status</strong>: The current optimizing status of the table, including idle, pending, planning, minor, major, full, committing.
+<ul>
+<li>idle: means that self-optimizing is not required on the table.</li>
+<li>pending: means that self-optimizing is required on the table and is waiting for resources.</li>
+<li>planning: means that self-optimizing process is being planed.</li>
+<li>minor: means that minor optimizing is being executed on the table.</li>
+<li>major: means that major optimizing is being executed on the table.</li>
+<li>full: means that full optimizing is being executed on the table.</li>
+<li>committing: means that self-optimizing process is being committed.</li>
+</ul>
+</li>
+<li><strong>Duration</strong>: The duration of the current status.</li>
+<li><strong>File Count</strong>: The total number of files involved in the current Self-optimizing, including base, insert, eq-delete, and pos-delete file types.</li>
+<li><strong>File Size</strong>: The total size of files involved in the current self-optimizing.</li>
+<li><strong>Quota</strong>: The proportion of self-optimizing execution time executed per unit time.</li>
+<li><strong>Quota Occupation</strong>: The actual Quota used for self-optimizing during execution of the table in the last hour. When optimizer resources are sufficient and the table requires more resources for self-optimizing, this value will be greater than 100%. When resources are scarce or the table requires fewer resources for self-optimizing, this value will be less than 100%.</li>
+</ul>
 </div>
                 
                     
@@ -733,12 +816,15 @@ Note that timestamp, timestampz, and long field types use UTC, while others use 
     <li><a href="#configure-data-expiration">Configure data expiration</a>
       <ul>
         <li><a href="#enable-or-disable-data-expiration">Enable or disable data expiration</a></li>
-        <li><a href="#set-the-data-retention-period">Set the data retention period</a></li>
-        <li><a href="#select-the-event-time-field">Select the event-time field</a></li>
-        <li><a href="#adjust-the-data-expiration-level">Adjust the data expiration level</a></li>
+        <li><a href="#set-retention-period">Set retention period</a></li>
+        <li><a href="#select-expiration-field">Select expiration field</a></li>
+        <li><a href="#adjust-expiration-level">Adjust expiration level</a></li>
+        <li><a href="#specify-start-time">Specify start time</a></li>
       </ul>
     </li>
     <li><a href="#delete-table">Delete table</a></li>
+    <li><a href="#explore-table-details">Explore table details</a></li>
+    <li><a href="#explore-self-optimizing-status">Explore self-optimizing status</a></li>
   </ul>
 </nav>
     </div>

@@ -2,8 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://amoro.apache.org/docs/latest/paimon-format/</loc>
-  </url><url>
     <loc>https://amoro.apache.org/docs/latest/readme/</loc>
   </url><url>
     <loc>https://amoro.apache.org/docs/latest/admin-guides/</loc>
@@ -49,6 +47,8 @@
     <loc>https://amoro.apache.org/docs/latest/mixed-iceberg-format/</loc>
   </url><url>
     <loc>https://amoro.apache.org/docs/latest/formats-overview/</loc>
+  </url><url>
+    <loc>https://amoro.apache.org/docs/latest/paimon-format/</loc>
   </url><url>
     <loc>https://amoro.apache.org/docs/latest/self-optimizing/</loc>
   </url><url>

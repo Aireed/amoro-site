@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,64 +585,54 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="deployment">Deployment</h1>
-<p>You can choose to download the stable release package from <a href="../../../download/">download page</a>, or the source code form <a href="https://github.com/apache/incubator-amoro">Github</a> and compile it according to the README.</p>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="deployment">Deployment</h1>
+<p>You can choose to download the stable release package from <a href="../../../download/">download page</a>, or the source code form <a href="https://github.com/apache/amoro">Github</a> and compile it according to the README.</p>
 <h2 id="system-requirements">System requirements</h2>
 <ul>
-<li>Java 8 is required. Java 17 is required for Trino.</li>
+<li>Java 8 is required.</li>
 <li>Optional: MySQL 5.5 or higher</li>
 <li>Optional: PostgreSQL 14.x or higher</li>
 <li>Optional: ZooKeeper 3.4.x or higher</li>
-<li>Optional: Hive (2.x or 3.x)</li>
-<li>Optional: Hadoop (2.9.x or 3.x)</li>
 </ul>
 <h2 id="download-the-distribution">Download the distribution</h2>
 <p>All released package can be downloaded from <a href="../../../download/">download page</a>.
-You can download amoro-x.y.z-bin.zip (x.y.z is the release number), and you can also download the runtime packages for each engine version according to the engine you are using.
+You can download apache-amoro-x.y.z-bin.tar.gz (x.y.z is the release number), and you can also download the runtime packages for each engine version according to the engine you are using.
 Unzip it to create the amoro-x.y.z directory in the same directory, and then go to the amoro-x.y.z directory.</p>
 <h2 id="source-code-compilation">Source code compilation</h2>
 <p>You can build based on the master branch without compiling Trino. The compilation method and the directory of results are described below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git clone https://github.com/apache/incubator-amoro.git
-</span></span><span style="display:flex;"><span>cd amoro
-</span></span><span style="display:flex;"><span>base_dir<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span> 
-</span></span><span style="display:flex;"><span>mvn clean package -DskipTests -pl <span style="color:#e6db74">&#39;!Trino&#39;</span>
-</span></span><span style="display:flex;"><span>cd dist/target/
-</span></span><span style="display:flex;"><span>ls
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ git clone https://github.com/apache/amoro.git
+</span></span><span style="display:flex;"><span>$ cd amoro
+</span></span><span style="display:flex;"><span>$ base_dir<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span> 
+</span></span><span style="display:flex;"><span>$ mvn clean package -DskipTests
+</span></span><span style="display:flex;"><span>$ cd amoro-ams/dist/target/
+</span></span><span style="display:flex;"><span>$ ls
 </span></span><span style="display:flex;"><span>amoro-x.y.z-bin.zip <span style="color:#75715e"># AMS release package</span>
-</span></span><span style="display:flex;"><span>dist-x.y.z-tests.jar
-</span></span><span style="display:flex;"><span>dist-x.y.z.jar
-</span></span><span style="display:flex;"><span>archive-tmp/
-</span></span><span style="display:flex;"><span>maven-archiver/
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>cd <span style="color:#e6db74">${</span>base_dir<span style="color:#e6db74">}</span>/flink/v1.15/flink-runtime/target
-</span></span><span style="display:flex;"><span>ls 
-</span></span><span style="display:flex;"><span>amoro-flink-runtime-1.15-x.y.z-tests.jar
-</span></span><span style="display:flex;"><span>amoro-flink-runtime-1.15-x.y.z.jar <span style="color:#75715e"># Flink 1.15 runtime package</span>
-</span></span><span style="display:flex;"><span>original-amoro-flink-runtime-1.15-x.y.z.jar
-</span></span><span style="display:flex;"><span>maven-archiver/
+</span></span><span style="display:flex;"><span>$ cd <span style="color:#e6db74">${</span>base_dir<span style="color:#e6db74">}</span>/amoro-mixed-format/amoro-mixed-format-flink/v1.15/amoro-mixed-format-flink-runtime-1.15/target
+</span></span><span style="display:flex;"><span>$ ls 
+</span></span><span style="display:flex;"><span>amoro-mixed-format-flink-runtime-1.15-x.y.z.jar <span style="color:#75715e"># Flink 1.15 runtime package</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>cd <span style="color:#e6db74">${</span>base_dir<span style="color:#e6db74">}</span>/spark/v3.1/spark-runtime/target
-</span></span><span style="display:flex;"><span>ls
-</span></span><span style="display:flex;"><span>amoro-spark-3.1-runtime-x.y.z.jar <span style="color:#75715e"># Spark v3.1 runtime package)</span>
-</span></span><span style="display:flex;"><span>amoro-spark-3.1-runtime-x.y.z-tests.jar
-</span></span><span style="display:flex;"><span>amoro-spark-3.1-runtime-x.y.z-sources.jar
-</span></span><span style="display:flex;"><span>original-amoro-spark-3.1-runtime-x.y.z.jar
-</span></span></code></pre></div><p>If you need to compile the Trino module at the same time, you need to install jdk17 locally and configure <code>toolchains.xml</code> in the user&rsquo;s <code>${user.home}/.m2/</code> directory,
-then run <code>mvn package -P toolchain</code> to compile the entire project.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;toolchains&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;toolchain&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;type&gt;</span>jdk<span style="color:#f92672">&lt;/type&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;provides&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;version&gt;</span>17<span style="color:#f92672">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;vendor&gt;</span>sun<span style="color:#f92672">&lt;/vendor&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/provides&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;configuration&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;jdkHome&gt;</span>${YourJDK17Home}<span style="color:#f92672">&lt;/jdkHome&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/configuration&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/toolchain&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/toolchains&gt;</span>
-</span></span></code></pre></div><h2 id="configuration">Configuration</h2>
+</span></span><span style="display:flex;"><span>$ cd <span style="color:#e6db74">${</span>base_dir<span style="color:#e6db74">}</span>/amoro-mixed-format/amoro-mixed-format-spark/v3.2/amoro-mixed-format-spark-runtime-3.2/target
+</span></span><span style="display:flex;"><span>$ ls
+</span></span><span style="display:flex;"><span>amoro-mixed-format-spark-runtime-3.2-x.y.z.jar <span style="color:#75715e"># Spark v3.2 runtime package)</span>
+</span></span></code></pre></div><p>More build guide can be found in the project&rsquo;s <a href="https://github.com/apache/amoro?tab=readme-ov-file#building">README</a>.</p>
+<h2 id="configuration">Configuration</h2>
 <p>If you want to use AMS in a production environment, it is recommended to modify <code>{AMORO_HOME}/conf/config.yaml</code> by referring to the following configuration steps.</p>
 <h3 id="configure-the-service-address">Configure the service address</h3>
 <ul>
@@ -643,6 +641,7 @@ then run <code>mvn package -P toolchain</code> to compile the entire project.</p
 <li>The <code>ams.thrift-server.table-service.bind-port</code> configuration specifies the binding port of the Thrift Server that provides the table service. The compute engines access AMS through this port, and the default value is 1260.</li>
 <li>The <code>ams.thrift-server.optimizing-service.bind-port</code> configuration specifies the binding port of the Thrift Server that provides the optimizing service. The optimizers access AMS through this port, and the default value is 1261.</li>
 <li>The <code>ams.http-server.bind-port</code> configuration specifies the port to which the HTTP service is bound. The Dashboard and Open API are bound to this port, and the default value is 1630.</li>
+<li>The <code>ams.http-server.rest-auth-type</code> configuration specifies the REST API auth type, which could be token(default) or basic. The basic auth would reuse <code>ams.admin-username</code> and <code>ams.admin-password</code> for authentication.</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">ams</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">server-bind-host</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span> <span style="color:#75715e">#The IP address for service listening, default is 0.0.0.0.</span>
@@ -663,18 +662,18 @@ then run <code>mvn package -P toolchain</code> to compile the entire project.</p
 <p>You can use MySQL/PostgreSQL as the system database instead of the default Derby.</p>
 <p>If you would like to use MySQL as the system database, you need to manually download the <a href="https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.1.0/mysql-connector-j-8.1.0.jar">MySQL JDBC Connector</a>
 and move it into the <code>{AMORO_HOME}/lib/</code> directory. You can use the following command to complete these operations:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd <span style="color:#e6db74">${</span>AMORO_HOME<span style="color:#e6db74">}</span>
-</span></span><span style="display:flex;"><span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#f92672">=</span>8.0.30
-</span></span><span style="display:flex;"><span>wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/<span style="color:#e6db74">${</span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#e6db74">}</span>/mysql-connector-java-<span style="color:#e6db74">${</span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#e6db74">}</span>.jar
-</span></span><span style="display:flex;"><span>mv mysql-connector-java-<span style="color:#e6db74">${</span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#e6db74">}</span>.jar lib
-</span></span></code></pre></div><p>Create an empty database in MySQL/PostgreSQL, then AMS will automatically create table structures in this MySQL/PostgreSQL database when it first started.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ cd <span style="color:#e6db74">${</span>AMORO_HOME<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>$ MYSQL_JDBC_DRIVER_VERSION<span style="color:#f92672">=</span>8.0.30
+</span></span><span style="display:flex;"><span>$ wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/<span style="color:#e6db74">${</span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#e6db74">}</span>/mysql-connector-java-<span style="color:#e6db74">${</span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#e6db74">}</span>.jar
+</span></span><span style="display:flex;"><span>$ mv mysql-connector-java-<span style="color:#e6db74">${</span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#e6db74">}</span>.jar lib
+</span></span></code></pre></div><p>Create an empty database in MySQL/PostgreSQL, then AMS will automatically create tables in this MySQL/PostgreSQL database when it first started.</p>
 <p>One thing you need to do is Adding MySQL/PostgreSQL configuration under <code>config.yaml</code> of Ams:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># MySQL</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">ams</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">database</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">mysql</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">jdbc-driver-class</span>: <span style="color:#ae81ff">com.mysql.cj.jdbc.Driver</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">url</span>: <span style="color:#ae81ff">jdbc:mysql://127.0.0.1:3306/amoro?useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true&amp;useAffectedRows=true&amp;useSSL=false</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">url</span>: <span style="color:#ae81ff">jdbc:mysql://127.0.0.1:3306/amoro?useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true&amp;useAffectedRows=true&amp;allowPublicKeyRetrieval=true&amp;useSSL=false</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">username</span>: <span style="color:#ae81ff">root</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>: <span style="color:#ae81ff">root</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># PostgreSQL</span>
@@ -700,19 +699,31 @@ If you choose to manually start an external optimizer, no additional container c
 AMS provides implementations of <code>LocalContainer</code> and <code>FlinkContainer</code> by default. Configuration for both container types can be found below:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">containers</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">localContainer</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container-impl</span>: <span style="color:#ae81ff">com.netease.amoro.optimizer.LocalOptimizerContainer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container-impl</span>: <span style="color:#ae81ff">org.apache.amoro.server.manager.LocalOptimizerContainer</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.JAVA_HOME</span>: <span style="color:#e6db74">&#34;/opt/java&#34;</span>   <span style="color:#75715e"># JDK environment</span>
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">flinkContainer</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container-impl</span>: <span style="color:#ae81ff">com.netease.amoro.optimizer.FlinkOptimizerContainer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container-impl</span>: <span style="color:#ae81ff">org.apache.amoro.server.manager.FlinkOptimizerContainer</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">flink-home</span>: <span style="color:#e6db74">&#34;/opt/flink/&#34;</span>                                     <span style="color:#75715e"># The installation directory of Flink</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.JVM_ARGS</span>: <span style="color:#e6db74">&#34;-Djava.security.krb5.conf=/opt/krb5.conf&#34;</span>   <span style="color:#75715e"># Submitting Flink jobs with Java parameters, such as Kerberos parameters.</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.HADOOP_CONF_DIR</span>: <span style="color:#e6db74">&#34;/etc/hadoop/conf/&#34;</span>                   <span style="color:#75715e"># Hadoop configuration file directory</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.HADOOP_USER_NAME</span>: <span style="color:#e6db74">&#34;hadoop&#34;</span>                             <span style="color:#75715e"># Hadoop user</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.FLINK_CONF_DIR</span>: <span style="color:#e6db74">&#34;/etc/hadoop/conf/&#34;</span>                    <span style="color:#75715e"># Flink configuration file directory</span>
-</span></span></code></pre></div><h3 id="configure-terminal">Configure terminal</h3>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">sparkContainer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container-impl</span>: <span style="color:#ae81ff">org.apache.amoro.server.manager.SparkOptimizerContainer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">spark-home</span>: <span style="color:#ae81ff">/opt/spark/                                    </span> <span style="color:#75715e"># Spark install home</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">master</span>: <span style="color:#ae81ff">yarn                                               </span> <span style="color:#75715e"># The cluster manager to connect to. See the list of https://spark.apache.org/docs/latest/submitting-applications.html#master-urls.</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">deploy-mode</span>: <span style="color:#ae81ff">cluster                                       </span> <span style="color:#75715e"># Spark deploy mode, client or cluster</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.JVM_ARGS</span>: -<span style="color:#ae81ff">Djava.security.krb5.conf=/opt/krb5.conf  </span> <span style="color:#75715e"># Spark launch jvm args, like kerberos config when ues kerberos</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.HADOOP_CONF_DIR</span>: <span style="color:#ae81ff">/etc/hadoop/conf/                  </span> <span style="color:#75715e"># Hadoop config dir</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.HADOOP_USER_NAME</span>: <span style="color:#ae81ff">hadoop                            </span> <span style="color:#75715e"># Hadoop user submit on yarn</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.SPARK_CONF_DIR</span>: <span style="color:#ae81ff">/opt/spark/conf/                    </span> <span style="color:#75715e"># Spark config dir</span>
+</span></span></code></pre></div><p>More optimizer container configurations can be found in <a href="../managing-optimizers/">managing optimizers</a>.</p>
+<h3 id="configure-terminal">Configure terminal</h3>
 <p>The Terminal module in the AMS Dashboard allows users to execute SQL directly on the platform. Currently, the Terminal backend supports two implementations: <code>local</code> and <code>kyuubi</code>.
 In local mode, an embedded Spark environment will be started in AMS. In kyuubi mode, an additional kyuubi service needs to be deployed.
 The configuration for kyuubi mode can refer to: <a href="../using-kyuubi/">Using Kyuubi with Terminal</a>. Below is the configuration for the local mode:</p>
@@ -722,6 +733,67 @@ The configuration for kyuubi mode can refer to: <a href="../using-kyuubi/">Using
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">local.spark.sql.iceberg.handle-timestamp-without-timezone</span>: <span style="color:#66d9ef">false</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># When the catalog type is Hive, it automatically uses the Spark session catalog to access Hive tables.</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">local.using-session-catalog-for-hive</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>More properties the terminal supports including:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>terminal.backend</td>
+<td>local</td>
+<td>Terminal backend implementation. local, kyuubi and custom are valid values.</td>
+</tr>
+<tr>
+<td>terminal.factory</td>
+<td>-</td>
+<td>Session factory implement of terminal, <code>terminal.backend</code> must be <code>custom</code> if this is set.</td>
+</tr>
+<tr>
+<td>terminal.result.limit</td>
+<td>1000</td>
+<td>Row limit of result-set</td>
+</tr>
+<tr>
+<td>terminal.stop-on-error</td>
+<td>false</td>
+<td>When a statement fails to execute, stop execution or continue executing the remaining statements.</td>
+</tr>
+<tr>
+<td>terminal.session.timeout</td>
+<td>30</td>
+<td>Session timeout in minutes.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configure-metric-reporter">Configure metric reporter</h3>
+<p>Amoro provides metric reporters by plugin mechanism to connect to  external metric systems.</p>
+<p>All metric-reporter plugins are configured in <code>$AMORO_CONF_DIR/plugins/metric-repoters.yaml</code> .</p>
+<p>The configuration format of the plug-in is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metric-reporters</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>:                 <span style="color:#75715e"># the unified plugin name.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>:              <span style="color:#75715e"># if this plugin is enabled, default is true.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:           <span style="color:#75715e"># a map defines properties of plugin.</span>
+</span></span></code></pre></div><p>Currently, there is only one reporter is available.</p>
+<h4 id="prometheus-exporter">Prometheus Exporter</h4>
+<p>By enable the <code>prometheus-exporter</code> plugin, the AMS will start a prometheus http exporter server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">metric-reporters</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">prometheus-exporter           </span> <span style="color:#75715e"># configs for prometheus exporter</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:
+</span></span><span style="display:flex;"><span>       <span style="color:#f92672">port</span>: <span style="color:#ae81ff">9090</span>                        <span style="color:#75715e"># the port that the prometheus-exporter listens on.</span>
+</span></span></code></pre></div><p>You can add a scrape job in your prometheus configs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Your prometheus configs file.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">scrape_configs</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#39;amoro-exporter&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">15s</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">static_configs</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">targets</span>: [<span style="color:#e6db74">&#39;localhost:9090&#39;</span>]  <span style="color:#75715e"># The host and port that you configured in Amoro plugins configs file.</span>
 </span></span></code></pre></div><h3 id="environments-variables">Environments variables</h3>
 <p>The following environment variables take effect during the startup process of AMS,
 you can set up those environments to overwrite the default value.</p>
@@ -782,12 +854,13 @@ you can set up those environments to overwrite the default value.</p>
 </table>
 <h2 id="start-ams">Start AMS</h2>
 <p>Enter the directory amoro-x.y.z and execute bin/ams.sh start to start AMS.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd amoro-x.y.z
-</span></span><span style="display:flex;"><span>bin/ams.sh start
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ cd amoro-x.y.z
+</span></span><span style="display:flex;"><span>$ bin/ams.sh start
 </span></span></code></pre></div><p>Then, access http://localhost:1630 through a browser to see the login page. If it appears, it means that the startup is
 successful. The default username and password for login are both &ldquo;admin&rdquo;.</p>
 <p>You can also restart/stop AMS with the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>bin/ams.sh restart/stop
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ bin/ams.sh restart
+</span></span><span style="display:flex;"><span>$ bin/ams.sh stop
 </span></span></code></pre></div><h2 id="upgrade-ams">Upgrade AMS</h2>
 <h3 id="upgrade-system-databases">Upgrade system databases</h3>
 <p>You can find all the upgrade SQL scripts under <code>{AMORO_HOME}/conf/mysql/</code> with name pattern <code>upgrade-a.b.c-to-x.y.z.sql</code>.
@@ -798,7 +871,7 @@ Replace all contents in the original <code>{AMORO_HOME}/plugin</code> directory 
 <div class="info">
     Backup the old content before replacing it, so that you can roll back the upgrade operation if necessary.
 </div>
-<h3 id="configure-new-parameters">Configure new parameters</h3>
+<h3 id="configure-new-properties">Configure new properties</h3>
 <p>The old configuration file <code>{AMORO_HOME}/conf/config.yaml</code> is usually compatible with the new version, but the new version may introduce new parameters. Try to compare the configuration files of the old and new versions, and reconfigure the parameters if necessary.</p>
 <h3 id="restart-ams">Restart AMS</h3>
 <p>Restart AMS with the following commands:</p>
@@ -834,6 +907,7 @@ Replace all contents in the original <code>{AMORO_HOME}/plugin</code> directory 
         <li><a href="#configure-high-availability">Configure high availability</a></li>
         <li><a href="#configure-optimizer-containers">Configure optimizer containers</a></li>
         <li><a href="#configure-terminal">Configure terminal</a></li>
+        <li><a href="#configure-metric-reporter">Configure metric reporter</a></li>
         <li><a href="#environments-variables">Environments variables</a></li>
         <li><a href="#configure-ams-jvm">Configure AMS JVM</a></li>
       </ul>
@@ -843,7 +917,7 @@ Replace all contents in the original <code>{AMORO_HOME}/plugin</code> directory 
       <ul>
         <li><a href="#upgrade-system-databases">Upgrade system databases</a></li>
         <li><a href="#replace-all-libs-and-plugins">Replace all libs and plugins</a></li>
-        <li><a href="#configure-new-parameters">Configure new parameters</a></li>
+        <li><a href="#configure-new-properties">Configure new properties</a></li>
         <li><a href="#restart-ams">Restart AMS</a></li>
       </ul>
     </li>

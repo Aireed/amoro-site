@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,7 +585,23 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="deploy-ams-on-kubernetes">Deploy AMS On Kubernetes</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="deploy-ams-on-kubernetes">Deploy AMS On Kubernetes</h1>
 <h2 id="requirements">Requirements</h2>
 <p>If you want to deploy AMS on Kubernetes, you’d better get a sense of the following things.</p>
 <ul>
@@ -587,28 +611,32 @@
 <li><a href="https://helm.sh/docs/intro/quickstart/">Helm3+</a></li>
 </ul>
 <h2 id="amoro-official-docker-image">Amoro Official Docker Image</h2>
-<p>You can find the official docker image at <a href="https://hub.docker.com/u/arctic163">Amoro Docker Hub</a>.</p>
+<p>You can find the official docker image at <a href="https://hub.docker.com/u/apache">Amoro Docker Hub</a>.</p>
 <p>The following are images that can be used in a production environment.</p>
-<p><strong>arctic163/amoro</strong></p>
+<p><strong>apache/amoro</strong></p>
 <p>This is an image built based on the Amoro binary distribution package for deploying AMS.</p>
-<p><strong>arctic163/optimizer-flink</strong></p>
+<p><strong>apache/amoro-flink-optimizer</strong></p>
 <p>This is an image built based on the official version of Flink for deploying the Flink optimizer.</p>
+<p><strong>apache/amoro-spark-optimizer</strong></p>
+<p>This is an image built based on the official version of Spark for deploying the Spark optimizer.</p>
 <h2 id="build-ams-docker-image">Build AMS Docker Image</h2>
 <p>If you want to build images locally, you can find the <code>build.sh</code> script in the docker folder of the project and pass the following command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./docker/build.sh amoro
-</span></span></code></pre></div><p>or build the <code>optimizer-flink</code> image by:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./docker/build.sh optimizer-flink --flink-version &lt;flink-version&gt;
+</span></span></code></pre></div><p>or build the <code>amoro-flink-optimizer</code> image by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./docker/build.sh amoro-flink-optimizer --flink-version &lt;flink-version&gt;
+</span></span></code></pre></div><p>or build the <code>amoro-spark-optimizer</code> image by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./docker/build.sh amoro-spark-optimizer --spark-version &lt;spark-version&gt;
 </span></span></code></pre></div><h2 id="get-helm-charts">Get Helm Charts</h2>
 <p>You can obtain the latest official release chart by adding the official Helm repository.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ helm repo add amoro https://netease.github.io/amoro/charts
 </span></span><span style="display:flex;"><span>$ helm search repo amoro 
 </span></span><span style="display:flex;"><span>NAME           CHART VERSION    APP VERSION        DESCRIPTION           
-</span></span><span style="display:flex;"><span>amoro/amoro    0.1.0            0.6.0              A Helm chart <span style="color:#66d9ef">for</span> Amoro 
+</span></span><span style="display:flex;"><span>amoro/amoro    0.1.0            0.7.0              A Helm chart <span style="color:#66d9ef">for</span> Amoro 
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>$ helm pull amoro/amoro 
 </span></span><span style="display:flex;"><span>$ tar zxvf amoro-*.tgz
 </span></span></code></pre></div><p>Alternatively, you can find the latest charts directly from the Github source code.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ git clone https://github.com/apache/incubator-amoro.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ git clone https://github.com/apache/amoro.git
 </span></span><span style="display:flex;"><span>$ cd amoro/charts
 </span></span><span style="display:flex;"><span>$ helm dependency build ./amoro
 </span></span></code></pre></div><h2 id="install">Install</h2>
@@ -616,7 +644,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ helm install &lt;deployment-name&gt; ./amoro 
 </span></span></code></pre></div><p>After successful installation, you can access WebUI through the following command.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ kubectl port-forward services/&lt;deployment-name&gt;-amoro-rest 1630:1630
-</span></span></code></pre></div><p>Open browser to go web: http://loclhost:1630</p>
+</span></span></code></pre></div><p>Open browser to go web: http://localhost:1630</p>
 <h2 id="access-logs">Access logs</h2>
 <p>Then, use pod name to get logs:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ kubectl get pod
@@ -652,6 +680,7 @@ If you need to modify the image address, such as using a private repository or b
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">repository</span>: <span style="color:#ae81ff">&lt;your repository&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">pullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">&lt;your tag&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">imagePullSecrets</span>: [ ]
 </span></span></code></pre></div><h3 id="configure-the-flink-optimizer-container">Configure the Flink Optimizer Container</h3>
 <p>By default, the Flink Optimizer Container is enabled.
 You can modify the container configuration by changing the <code>optimizer.flink</code> section.</p>
@@ -662,18 +691,19 @@ You can modify the container configuration by changing the <code>optimizer.flink
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">~ </span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>:
 </span></span><span style="display:flex;"><span>      <span style="color:#75715e">## the image repository</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repository</span>: <span style="color:#ae81ff">arctic163/optimizer-flink</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">repository</span>: <span style="color:#ae81ff">apache/amoro-flink-optimizer</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#75715e">## the image tag, if not set, the default value is the same with amoro image tag.</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">tag</span>: <span style="color:#ae81ff">~</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">pullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#75715e">## the location of flink optimizer jar in image.</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">jobUri</span>: <span style="color:#e6db74">&#34;local:///opt/flink/usrlib/optimizer-job.jar&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>: {
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;flink-conf.taskmanager.memory.managed.size&#34;: </span><span style="color:#e6db74">&#34;32mb&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;flink-conf.taskmanager.memory.netwrok.max&#34;: </span><span style="color:#e6db74">&#34;32mb&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;flink-conf.taskmanager.memory.netwrok.nin&#34;: </span><span style="color:#e6db74">&#34;32mb&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;flink-conf.taskmanager.memory.network.max&#34;: </span><span style="color:#e6db74">&#34;32mb&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;flink-conf.taskmanager.memory.network.min&#34;: </span><span style="color:#e6db74">&#34;32mb&#34;</span>
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><h3 id="configure-the-rbac">Configure the RBAC</h3>
-<p>By default, Helm Chart creates a service account, role, and role bind for Amaro deploy.
+<p>By default, Helm Chart creates a service account, role, and role bind for Amoro deploy.
 You can also modify this configuration to use an existing account.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ServiceAccount of Amoro to schedule optimizer.</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">serviceAccount</span>:

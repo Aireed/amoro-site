@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,7 +585,23 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="using-kyuubi-by-terminal">Using Kyuubi By Terminal</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="using-kyuubi-by-terminal">Using Kyuubi By Terminal</h1>
 <p><strong>Prerequisites</strong>:</p>
 <ul>
 <li>There must be a running Kyuubi. To deploy and run Kyuubi, please refer to <a href="https://kyuubi.readthedocs.io/en/master/">Kyuubi doc</a></li>
@@ -587,7 +611,9 @@
 </span></span><span style="display:flex;"><span>    terminal:
 </span></span><span style="display:flex;"><span>      backend: kyuubi
 </span></span><span style="display:flex;"><span>      kyuubi.jdbc.url: jdbc:hive2://127.0.0.1:10009/ <span style="color:#75715e"># kyuubi Connection Address</span>
-</span></span></code></pre></div><p>Without configuring Kyuubi, Terminal executes in memory in AMS.</p>
+</span></span></code></pre></div><h2 id="kerberos-authentication">Kerberos Authentication</h2>
+<p>Amoro terminal uses the Kerberos authentication information from the catalog to connect to Kyuubi. When configuring the Kyuubi JDBC URL, you only need to configure the connection information and do not need to configure Kerberos authentication information (e.g. principal).</p>
+<p>Without configuring Kyuubi, Terminal executes in memory in AMS.</p>
 <p>To execute SQL in Terminal, you can refer to the following steps:：</p>
 <ul>
 <li>Please switch Catalog first</li>
@@ -615,7 +641,11 @@
 
 <div id="toc" class="markdown-body">
     <div id="full">
-        <nav id="TableOfContents"></nav>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#kerberos-authentication">Kerberos Authentication</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 

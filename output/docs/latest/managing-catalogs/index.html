@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,14 +585,30 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="managing-catalogs">Managing Catalogs</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="managing-catalogs">Managing Catalogs</h1>
 <p>Users can import your test or online clusters through the catalog management function provided by the AMS Dashboard. Before adding a new Catalog,
 please read the following guidelines and select the appropriate creation according to your actual needs.</p>
 <h2 id="create-catalog">Create catalog</h2>
 <p>In Amoro, the catalog is a namespace for a group of libraries and tables. Under the catalog, it is further divided into different databases, and under each database, there are different tables. The name of a table in Amoro is uniquely identified by the format <code>catalog.database.table</code>. In practical applications, a catalog generally corresponds to a metadata service, such as the commonly used Hive Metastore in big data.</p>
 <p>AMS can also serve as a metadata service. In order to differentiate the storage method of metadata, Amoro classifies the catalog type into <code>Internal Catalog</code> and <code>External Catalog</code>. Catalogs that use AMS as the metadata service are internal catalogs, while others are external catalogs. When creating an external catalog, you need to select the storage backend for its metadata, such as Hive, Hadoop, or Custom.</p>
 <p>In addition, when defining a catalog, you also need to select the table format used under it. Currently, Amoro supports the following table formats:
-<a href="../iceberg-format/">Iceberg</a> 、<a href="../mixed-hive-format/">Mixed-Hive</a>、<a href="../mixed-iceberg-format/">Mixed-Iceberg</a>.</p>
+<a href="../iceberg-format/">Iceberg</a> 、<a href="../paimon-format">Paimon</a>、<a href="../mixed-hive-format/">Mixed-Hive</a>、<a href="../mixed-iceberg-format/">Mixed-Iceberg</a>.</p>
 <p>You can create a catalog in the AMS frontend:
 <img src="../images/admin/create-catalog.png" alt="create_catalog"></p>
 <h3 id="configure-basic-information">Configure basic information</h3>
@@ -592,7 +616,7 @@ please read the following guidelines and select the appropriate creation accordi
 <li>name: catalog name, only numbers, letters, _, - , starting with letters are supported (lower case letters are recommended)</li>
 <li>type: Internal Catalog or External Catalog</li>
 <li>metastore: storage type for table metadata. Hive Metastore (for using HMS to store metadata), Hadoop (corresponding to iceberg&rsquo;s Hadoop catalog), Glue (for using AWS Glue to store metadata), Custom (other iceberg catalog implementations).</li>
-<li>table format: Iceberg 、Mixed-Hive、Mixed  Iceberg. Currently, only Hive Metastore supports both Mixed-Hive and Iceberg format table, only internal catalog support both Mixed-Iceberg and Iceberg format table. All other metastore types only support Iceberg, currently a Metastore only supports one kind of TableFormat, in the future will support multiple</li>
+<li>table format: Iceberg 、Paimon、Mixed-Hive、Mixed-Iceberg.</li>
 <li>optimizer group: tables under the catalog will automatically perform self-optimizing within this group.</li>
 </ul>
 <h3 id="configure-storage">Configure storage</h3>
@@ -619,19 +643,15 @@ please read the following guidelines and select the appropriate creation accordi
 <ul>
 <li>warehouse: Warehouse <strong>must be configured</strong> for ams/hadoop/glue catalog, as it determines where our database and table files should be placed</li>
 <li>catalog-impl: when the metastore is <strong>Custom</strong>, an additional catalog-impl must be defined, and the user must put the jar package for the custom catalog implementation into the <strong>{AMORO_HOME}/lib</strong> directory, <strong>and the service must be restarted to take effect</strong></li>
+<li>database-filter: Configure a regular expression to filter databases in the catalog. If not set then all databases will be displayed in table menu.</li>
 <li>table-filter: Configure a regular expression to filter tables in the catalog. The matching will be done in the format of <code>database.table</code>. For example, if it is set to <code>(A\.a)|(B\.b)</code>, it will ignore all tables except for table <code>a</code> in database <code>A</code> and table <code>b</code> in database <code>B</code></li>
 </ul>
 <h3 id="configure-table-properties">Configure table properties</h3>
 <p>If you want to add the same table properties to all tables under a catalog, you can add these table properties here on the catalog level. If you also configure this property on the table level, the property on the table will take effect.</p>
-<p>We recommend users to create a Catalog following the guidelines below：</p>
-<ul>
-<li>If you want to use it in conjunction with HMS, choose <code>External Catalog</code> for the <code>Type</code> and <code>Hive Metastore</code> for the <code>Metastore</code>, and choose the table format based on your needs, Mixed-Hive or Iceberg.</li>
-<li>If you want to use Mixed-Iceberg provided by Amoro, choose <code>Internal Catalog</code> for the <code>Type</code> and <code>Mixed-Iceberg</code> for the table format.</li>
-</ul>
 <h2 id="delete-catalog">Delete catalog</h2>
 <p>When a user needs to delete a Catalog, they can go to the details page of the Catalog and click the Remove button at the bottom of the page to perform the deletion.</p>
 <div class="info">
-    Before deleting a Catalog, AMS will verify whether there is metadata for tables under that Catalog.
+    Before deleting an internal catalog, AMS will verify whether there is metadata for tables under that Catalog.
 If there are still tables under that Catalog, AMS will prompt that the deletion failed.
 </div>
 </div>

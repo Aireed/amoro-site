@@ -26,7 +26,7 @@
       <link>https://amoro.apache.org/docs/latest/metrics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://amoro.apache.org/docs/latest/metrics/</guid>
-      <description>Metrics Amoro provides both table-level and platform-level metrics to help users understand the runtime status of the current table.&#xA;Table metrics The Amoro Tables details page provides multiple tabs to display the status of the table from various dimensions, mainly including:&#xA;Tab Name Description Details Display the table&amp;rsquo;s schema, primary key configuration, partition configuration, properties; as well as the metric information of the files stored in ChangeStore and BaseStore, including the number of files and average file size, as well as the latest submission time of the files.</description>
+      <description>Metrics Amoro build a metrics system to measure the behaviours of table management processes, like how long has it been since a table last performed self-optimizing process, and how much resources does a optimizer group currently has?&#xA;There are two types of metrics provided in the Amoro metric system: Gauge and Counter.&#xA;Gauge: Provides a value of any type at a point in time. Counter: Used to count values by incrementing and decrementing.</description>
     </item>
     <item>
       <title>Using Tables</title>

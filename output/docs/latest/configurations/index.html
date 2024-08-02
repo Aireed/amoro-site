@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,7 +585,23 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="table-configurations">Table Configurations</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="table-configurations">Table Configurations</h1>
 <h2 id="multi-level-configuration-management">Multi-level configuration management</h2>
 <p>Amoro provides configurations that can be configured at the <code>Catalog</code>, <code>Table</code>, and <code>Engine</code> levels. The configuration
 priority is given first to the <code>Engine</code>, followed by the <code>Table</code>, and finally by the <code>Catalog</code>.</p>
@@ -642,9 +666,14 @@ modified through <a href="../using-tables/#modify-table">Alter Table</a> operati
 <td>The fragment file size threshold. We could divide self-optimizing.target-size by this ratio to get the actual fragment file size</td>
 </tr>
 <tr>
+<td>self-optimizing.min-target-size-ratio</td>
+<td>0.75</td>
+<td>The undersized segment file size threshold. Segment files under this threshold will be considered for rewriting</td>
+</tr>
+<tr>
 <td>self-optimizing.minor.trigger.file-count</td>
 <td>12</td>
-<td>The minimum numbers of fragment files to trigger minor optimizing</td>
+<td>The minimum number of files to trigger minor optimizing is determined by the sum of fragment file count and equality delete file count</td>
 </tr>
 <tr>
 <td>self-optimizing.minor.trigger.interval</td>
@@ -665,6 +694,11 @@ modified through <a href="../using-tables/#modify-table">Alter Table</a> operati
 <td>self-optimizing.full.rewrite-all-files</td>
 <td>true</td>
 <td>Whether full optimizing rewrites all files or skips files that do not need to be optimized</td>
+</tr>
+<tr>
+<td>self-optimizing.min-plan-interval</td>
+<td>60000</td>
+<td>The minimum time interval between two self-optimizing planning action</td>
 </tr>
 </tbody>
 </table>
@@ -738,6 +772,55 @@ modified through <a href="../using-tables/#modify-table">Alter Table</a> operati
 <td>data-expire.retention-time</td>
 <td>NULL</td>
 <td>Retention period for data expiration. For example, 1d means retaining data for 1 day. Other supported units include h (hour), min (minute), s (second), ms (millisecond), etc.</td>
+</tr>
+<tr>
+<td>data-expire.base-on-rule</td>
+<td>LAST_COMMIT_TIME</td>
+<td>A rule to indicate how to start expire data. Including LAST_COMMIT_TIME and CURRENT_TIME. LAST_COMMIT_TIME uses the timestamp of latest commit snapshot which is not optimized as the start of the expiration, which ensures that the table has <code>retention-time</code> data</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tags-configurations">Tags configurations</h2>
+<p>Tags configurations are applicable to Iceberg Format only now, and will be supported in Mixed Format
+soon.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tag.auto-create.enabled</td>
+<td>false</td>
+<td>Enables automatically creating tags</td>
+</tr>
+<tr>
+<td>tag.auto-create.trigger.period</td>
+<td>daily</td>
+<td>Period of creating tags, support <code>daily</code>,<code>hourly</code> now</td>
+</tr>
+<tr>
+<td>tag.auto-create.trigger.offset.minutes</td>
+<td>0</td>
+<td>The minutes by which the tag is created after midnight (00:00)</td>
+</tr>
+<tr>
+<td>tag.auto-create.trigger.max-delay.minutes</td>
+<td>60</td>
+<td>The maximum delay time for creating a tag</td>
+</tr>
+<tr>
+<td>tag.auto-create.tag-format</td>
+<td>&rsquo;tag-&lsquo;yyyyMMdd for daily and &rsquo;tag-&lsquo;yyyyMMddHH for hourly periods</td>
+<td>The format of the name for tag. Modifying this configuration will not take effect on old tags</td>
+</tr>
+<tr>
+<td>tag.auto-create.max-age-ms</td>
+<td>-1</td>
+<td>Time of automatically created Tag to retain, -1 means keep it forever. Modifying this configuration will not take effect on old tags</td>
 </tr>
 </tbody>
 </table>
@@ -829,6 +912,11 @@ modified through <a href="../using-tables/#modify-table">Alter Table</a> operati
 <td>write.distribution.hash-mode</td>
 <td>auto</td>
 <td>Auto-bucket mode, which supports primary-key, partition-key, primary-partition-key, and auto</td>
+</tr>
+<tr>
+<td>base.refresh-interval</td>
+<td>-1 (Closed)</td>
+<td>The interval for refreshing the BaseStore</td>
 </tr>
 </tbody>
 </table>
@@ -957,6 +1045,7 @@ modified through <a href="../using-tables/#modify-table">Alter Table</a> operati
     <li><a href="#multi-level-configuration-management">Multi-level configuration management</a></li>
     <li><a href="#self-optimizing-configurations">Self-optimizing configurations</a></li>
     <li><a href="#data-cleaning-configurations">Data-cleaning configurations</a></li>
+    <li><a href="#tags-configurations">Tags configurations</a></li>
     <li><a href="#mixed-format-configurations">Mixed Format configurations</a>
       <ul>
         <li><a href="#reading-configurations">Reading configurations</a></li>

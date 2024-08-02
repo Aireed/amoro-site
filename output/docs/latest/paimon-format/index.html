@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -458,7 +462,7 @@
                 <li>
 
 
-                    <a class="top-menu chevron-toggle  collapsed" data-toggle="collapse" href="#Formats">
+                    <a class="top-menu chevron-toggle " data-toggle="collapse" href="#Formats">
                         <span>Formats</span>
                     </a>
                 </li>
@@ -471,6 +475,10 @@
                     
                         <li>
                             <a href="../iceberg-format/">Iceberg</a>
+                        </li>
+                    
+                        <li>
+                            <a href="../paimon-format/">Paimon</a>
                         </li>
                     
                         <li>
@@ -577,7 +585,23 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="paimon-format">Paimon Format</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="paimon-format">Paimon Format</h1>
 <p>Paimon format refers to <a href="https://paimon.apache.org/">Apache Paimon</a> table.
 Paimon is a streaming data lake platform with high-speed data ingestion, changelog tracking and efficient real-time analytics.</p>
 <p>By registering Paimon&rsquo;s catalog with Amoro, users can view information such as Schema, Options, Files, Snapshots, DDLs, Compaction information, and more for Paimon tables.

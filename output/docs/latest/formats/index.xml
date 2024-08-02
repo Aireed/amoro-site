@@ -8,13 +8,6 @@
     <language>en-us</language>
     <atom:link href="https://amoro.apache.org/docs/latest/formats/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Paimon</title>
-      <link>https://amoro.apache.org/docs/latest/paimon-format/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://amoro.apache.org/docs/latest/paimon-format/</guid>
-      <description>Paimon Format Paimon format refers to Apache Paimon table. Paimon is a streaming data lake platform with high-speed data ingestion, changelog tracking and efficient real-time analytics.&#xA;By registering Paimon&amp;rsquo;s catalog with Amoro, users can view information such as Schema, Options, Files, Snapshots, DDLs, Compaction information, and more for Paimon tables. Furthermore, they can operate on Paimon tables using Spark SQL in the Terminal. The current supported catalog types and file system types for Paimon are all supported.</description>
-    </item>
-    <item>
       <title>Iceberg</title>
       <link>https://amoro.apache.org/docs/latest/iceberg-format/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -41,6 +34,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://amoro.apache.org/docs/latest/formats-overview/</guid>
       <description>Formats Overview Table format (aka. format) was first proposed by Iceberg, which can be described as follows:&#xA;It defines the relationship between tables and files, and any engine can query and retrieve data files according to the table format. New formats such as Iceberg/Delta/Hudi further define the relationship between tables and snapshots, and the relationship between snapshots and files. All write operations on the table will generate new snapshots, and all read operations on the table are based on snapshots.</description>
+    </item>
+    <item>
+      <title>Paimon</title>
+      <link>https://amoro.apache.org/docs/latest/paimon-format/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://amoro.apache.org/docs/latest/paimon-format/</guid>
+      <description>Paimon Format Paimon format refers to Apache Paimon table. Paimon is a streaming data lake platform with high-speed data ingestion, changelog tracking and efficient real-time analytics.&#xA;By registering Paimon&amp;rsquo;s catalog with Amoro, users can view information such as Schema, Options, Files, Snapshots, DDLs, Compaction information, and more for Paimon tables. Furthermore, they can operate on Paimon tables using Spark SQL in the Terminal. The current supported catalog types and file system types for Paimon are all supported.</description>
     </item>
   </channel>
 </rss>

@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,54 +585,70 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="spark-configuration">Spark Configuration</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="spark-configuration">Spark Configuration</h1>
 <h2 id="catalogs-configuration">Catalogs configuration</h2>
 <h3 id="using-mixed-format-in-a-standalone-catalog">Using Mixed-Format in a standalone catalog</h3>
 <p>Starting from version 3.x, Spark supports configuring an independent Catalog.
 If you want to use a Mixed-Format table in a standalone Catalog, you can configure it as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.arctic_catalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">com.netease.arctic.spark.ArcticSparkCatalog</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.arctic_catalog.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME_HIVE}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.mixed_catalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">org.apache.amoro.spark.MixedFormatSparkCatalog</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.mixed_catalog.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME_HIVE}</span>
 </span></span></code></pre></div><p>Then, execute the following SQL in the Spark SQL Client to switch to the corresponding catalog.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>use arctic_catalog;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>use mixed_catalog;
 </span></span></code></pre></div><p>Of course, you can also access Mixed-Format tables by directly using the triplet
-<code>arctic_catalog.{db_name}.{table_name}</code>.</p>
+<code>mixed_catalog.{db_name}.{table_name}</code>.</p>
 <p>You can also set Spark&rsquo;s default Catalog to your configured Catalog using the following properties.
 In this way, you don&rsquo;t need to use the <code>use {catalog}</code> command to switch the default catalog.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.defaultCatalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">arctic_catalog</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.arctic_catalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">com.netease.arctic.spark.ArcticSparkCatalog</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.arctic_catalog.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME_HIVE}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.defaultCatalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">mixed_catalog</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.mixed_catalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">org.apache.amoro.spark.MixedFormatSparkCatalog</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.mixed_catalog.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME_HIVE}</span>
 </span></span></code></pre></div><p>In a standalone AmoroSparkCatalog scenario, only Mixed-Format tables can be created and accessed in the corresponding
 catalog</p>
 <h3 id="using-mixed-format-in-session-catalog">Using Mixed-Format in session catalog</h3>
 <p>If you want to access both existing Hive tables or Spark datasource tables and Mixed-Format tables in Spark,
 you can use the AmoroSparkSessionCatalog as the implementation of the Spark default session catalog.
 The configuration method is as follows.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.spark_catalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">com.netease.arctic.spark.ArcticSparkSessionCatalog</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.spark_catalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">org.apache.amoro.spark.MixedFormatSparkSessionCatalog</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.spark_catalog.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME_HIVE}</span>
-</span></span></code></pre></div><p>When using the <code>ArcticSparkSessionCatalog</code> as the implementation of the <code>spark_catalog</code>, it behaves as follows</p>
+</span></span></code></pre></div><p>When using the <code>MixedFormatSparkSessionCatalog</code> as the implementation of the <code>spark_catalog</code>, it behaves as follows</p>
 <ul>
 <li>
 <p>Load Table: When resolving a <code>db_name.table_name</code> identifier, it will load the table metadata by Spark&rsquo;s built-in
 session catalog implementation, and then checking the MixedFormat flag defined in table properties. If the table has
-the MixedFormat flag, it will be loaded by <code>ArcticSparkCatalog</code> again.</p>
+the MixedFormat flag, it will be loaded by <code>MixedFormatSparkCatalog</code> again.</p>
 </li>
 <li>
 <p>Create Table: The behavior of <code>CREATE TABLE</code> is determined by the <code>using {provider}</code> clause in the DDL statement. If
-the clause contains <code>using arctic</code>, a Mixed-Format table will be created. Otherwise, the default Spark implementation
+the clause contains <code>using mixed_iceberg</code> or <code>using mixed_hive</code>, a Mixed-Format table will be created. Otherwise, the default Spark implementation
 will be used to create the table.</p>
 </li>
 </ul>
-<p>When using the <code>ArcticSparkSessionCatalog</code>, there are several points to keep in mind:</p>
+<p>When using the <code>MixedFormatSparkSessionCatalog</code>, there are several points to keep in mind:</p>
 <ul>
-<li><code>ArcticSparkSessionCatalog</code> can only be configured under the <code>spark_catalog</code></li>
+<li><code>MixedFormatSparkSessionCatalog</code> can only be configured under the <code>spark_catalog</code></li>
 <li>The <code>spark.sql.catalogImplementation</code> must be configured as <code>HIVE</code></li>
 <li>Catalogs registered on AMS must use a Metastore of the <code>Hive</code> type.</li>
 </ul>
 <h2 id="the-high-availability-configuration">The high availability configuration</h2>
 <p>If AMS is configured with high availability, you can configure the <code>spark.sql.catalog.{catalog_name}.url</code> property in
 the following way to achieve higher availability.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.arctic_catalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">com.netease.arctic.spark.ArcticSparkCatalog</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.arctic_catalog.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">zookeeper://{zookeeper-endpoint-list}/{cluster-name}/{catalog-name}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.mixed_catalog</span><span style="color:#f92672">=</span><span style="color:#e6db74">org.apache.amoro.spark.MixedFormatSparkCatalog</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spark.sql.catalog.mixed_catalog.url</span><span style="color:#f92672">=</span><span style="color:#e6db74">zookeeper://{zookeeper-endpoint-list}/{cluster-name}/{catalog-name}</span>
 </span></span></code></pre></div><p>Among above:</p>
 <ul>
 <li>zookeeper-endpoint-list:  a list of host:port pairs separated by commas. A valid value could

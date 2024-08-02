@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,7 +585,23 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="flink-dml">Flink DML</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="flink-dml">Flink DML</h1>
 <h2 id="querying-with-sql">Querying with SQL</h2>
 <p>Amoro tables support reading data in stream or batch mode through Flink SQL. You can switch modes using the following methods:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Run Flink tasks in streaming mode in the current session
@@ -585,7 +609,28 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Run Flink tasks in batch mode in the current session
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SET</span> execution.runtime<span style="color:#f92672">-</span><span style="color:#66d9ef">mode</span> <span style="color:#f92672">=</span> batch;
-</span></span></code></pre></div><h3 id="batch-mode">Batch mode</h3>
+</span></span></code></pre></div><p>The following Hint Options are supported:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source.parallelism</td>
+<td>(none)</td>
+<td>Integer</td>
+<td>No</td>
+<td>Defines a custom parallelism for the source. By default, if this option is not defined, the planner will derive the parallelism for each statement individually by also considering the global configuration.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="batch-mode">Batch mode</h3>
 <p>Use batch mode to read full and incremental data from FileStore.</p>
 <blockquote>
 <p><strong>TIPS</strong></p>
@@ -664,7 +709,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e">-- Enable dynamic table parameter configuration to make hint options configured in Flink SQL effective
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">table</span>.<span style="color:#66d9ef">dynamic</span><span style="color:#f92672">-</span><span style="color:#66d9ef">table</span><span style="color:#f92672">-</span><span style="color:#66d9ef">options</span>.enabled<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> test_table <span style="color:#75715e">/*+ OPTIONS(&#39;arctic.read.mode&#39;=&#39;log&#39;) */</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> test_table <span style="color:#75715e">/*+ OPTIONS(&#39;mixed-format.read.mode&#39;=&#39;log&#39;) */</span>;
 </span></span></code></pre></div><p>The following Hint Options are supported:</p>
 <table>
 <thead>
@@ -678,11 +723,11 @@
 </thead>
 <tbody>
 <tr>
-<td>arctic.read.mode</td>
+<td>mixed-format.read.mode</td>
 <td>file</td>
 <td>String</td>
 <td>No</td>
-<td>To specify the type of data to read from an Amoro table, either File or Log, use the arctic.read.mode parameter. If the value is set to log, the Log configuration must be enabled.</td>
+<td>To specify the type of data to read from an Amoro table, either File or Log, use the mixed-format.read.mode parameter. If the value is set to log, the Log configuration must be enabled.</td>
 </tr>
 <tr>
 <td>scan.startup.mode<img width=90/></td>
@@ -717,7 +762,7 @@
 <td>(none)</td>
 <td>String</td>
 <td>Required if LogStore is pulsar, otherwise not required</td>
-<td>Pulsar admin 的 HTTP URL，如：http://my-broker.example.com:8080</td>
+<td>Pulsar admin&rsquo;s HTTP URL， e.g. <a href="http://my-broker.example.com:8080">http://my-broker.example.com:8080</a></td>
 </tr>
 <tr>
 <td>properties.*</td>
@@ -732,13 +777,6 @@
 <td>String</td>
 <td>No</td>
 <td>The type of RowKind that will be generated when reading log data, supports: all-kinds, append-only.<br>all-kinds: will read cdc data, including +I/-D/-U/+U;<br>append-only: will only generate Insert data, recommended to use this configuration when reading without primary key.</td>
-</tr>
-<tr>
-<td>log-store.kafka.compatible.enabled</td>
-<td>false</td>
-<td>Boolean</td>
-<td>No</td>
-<td>Compatible with LogStore Kafka&rsquo;s deprecated Source API; this parameter must be set to true when Flink tasks reading Logstore kafka need to be upgraded to Amoro version 0.4.1 and above with state, otherwise a state incompatibility exception will be encountered.</td>
 </tr>
 </tbody>
 </table>
@@ -778,18 +816,18 @@
 <td>Reads bounded data or unbounded data in a streaming mode, false: reads bounded data, true: reads unbounded data</td>
 </tr>
 <tr>
-<td>arctic.read.mode</td>
+<td>mixed-format.read.mode</td>
 <td>file</td>
 <td>String</td>
 <td>No</td>
-<td>To specify the type of data to read from an Amoro table, either File or Log, use the arctic.read.mode parameter. If the value is set to log, the Log configuration must be enabled.</td>
+<td>To specify the type of data to read from an Amoro table, either File or Log, use the mixed-format.read.mode parameter. If the value is set to log, the Log configuration must be enabled.</td>
 </tr>
 <tr>
 <td>monitor-interval<img width=120/></td>
 <td>10s</td>
 <td>Duration</td>
 <td>No</td>
-<td>The arctic.read.mode = file parameter needs to be set for this to take effect. The time interval for monitoring newly added data files</td>
+<td>The mixed-format.read.mode = file parameter needs to be set for this to take effect. The time interval for monitoring newly added data files</td>
 </tr>
 <tr>
 <td>start-snapshot-id</td>
@@ -838,7 +876,7 @@
 <td>Reads bounded data or unbounded data in a streaming mode, false: reads bounded data, true: reads unbounded data</td>
 </tr>
 <tr>
-<td>arctic.read.mode</td>
+<td>mixed-format.read.mode</td>
 <td>file</td>
 <td>String</td>
 <td>No</td>
@@ -849,7 +887,7 @@
 <td>10s</td>
 <td>String</td>
 <td>No</td>
-<td>This parameter only takes effect when arctic.read.mode = file. It sets the time interval for monitoring newly added data files</td>
+<td>This parameter only takes effect when mixed-format.read.mode = file. It sets the time interval for monitoring newly added data files</td>
 </tr>
 <tr>
 <td>scan.startup.mode</td>
@@ -875,13 +913,13 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> OVERWRITE unkeyed <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;2022-07-01&#39;</span>);
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- It is also possible to overwrite data for a specific partition:
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> OVERWRITE <span style="color:#f92672">`</span>arctic_catalog<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>arctic_db<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>unkeyed<span style="color:#f92672">`</span> PARTITION(<span style="color:#66d9ef">data</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;2022-07-01&#39;</span>) <span style="color:#66d9ef">SELECT</span> <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;b&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> OVERWRITE <span style="color:#f92672">`</span>mixed_catalog<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>mixed_db<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>unkeyed<span style="color:#f92672">`</span> PARTITION(<span style="color:#66d9ef">data</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;2022-07-01&#39;</span>) <span style="color:#66d9ef">SELECT</span> <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;b&#39;</span>;
 </span></span></code></pre></div><p>For non-partitioned tables, INSERT OVERWRITE will overwrite the entire data in the table.</p>
 <h3 id="insert-into">INSERT INTO</h3>
 <p>For Amoro tables, it is possible to specify whether to write data to FileStore or LogStore.</p>
 <p>For Amoro primary key tables, writing to FileStore will also write CDC data to the ChangeStore.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>arctic_catalog<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>arctic_db<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>test_table<span style="color:#f92672">`</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*+ OPTIONS(&#39;arctic.emit.mode&#39;=&#39;log,file&#39;) */</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>mixed_catalog<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>mixed_db<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>test_table<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*+ OPTIONS(&#39;mixed-format.emit.mode&#39;=&#39;log,file&#39;) */</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, name <span style="color:#66d9ef">from</span> <span style="color:#f92672">`</span><span style="color:#66d9ef">source</span><span style="color:#f92672">`</span>;
 </span></span></code></pre></div><p>Hint Options</p>
 <table>
@@ -896,18 +934,18 @@
 </thead>
 <tbody>
 <tr>
-<td>arctic.emit.mode</td>
+<td>mixed-format.emit.mode</td>
 <td>auto</td>
 <td>String</td>
 <td>No</td>
 <td>Data writing modes currently supported are: file, log, and auto. For example: &lsquo;file&rsquo; means data is only written to the Filestore. &rsquo;log&rsquo; means data is only written to the Logstore. &lsquo;file,log&rsquo; means data is written to both the Filestore and the Logstore. &lsquo;auto&rsquo; means data is written only to the Filestore if the Logstore for the Amoro table is disabled. If the Logstore for the Amoro table is enabled, it means data is written to both the Filestore and the Logstore. It is recommended to use &lsquo;auto&rsquo;.</td>
 </tr>
 <tr>
-<td>arctic.emit.auto-write-to-logstore.watermark-gap</td>
+<td>mixed-format.emit.auto-write-to-logstore.watermark-gap</td>
 <td>(none)</td>
 <td>Duration</td>
 <td>No</td>
-<td>This feature is only enabled when &lsquo;arctic.emit.mode&rsquo;=&lsquo;auto&rsquo;. If the watermark of the Amoro writers is greater than the current system timestamp minus a specific value, the writers will also write data to the Logstore. The default setting is to enable the Logstore writer immediately after the job starts. The value for this feature must be greater than 0.</td>
+<td>This feature is only enabled when &lsquo;mixed-format.emit.mode&rsquo;=&lsquo;auto&rsquo;. If the watermark of the Amoro writers is greater than the current system timestamp minus a specific value, the writers will also write data to the Logstore. The default setting is to enable the Logstore writer immediately after the job starts. The value for this feature must be greater than 0.</td>
 </tr>
 <tr>
 <td>log.version</td>
@@ -960,6 +998,113 @@
 </tr>
 </tbody>
 </table>
+<h2 id="lookup-join-with-sql">Lookup join with SQL</h2>
+<p>A Lookup Join is used to enrich a table with data that is queried from Amoro Table. The join requires one table to have a processing time attribute and the other table to be backed by a lookup source connector.</p>
+<p>The following example shows the syntax to specify a lookup join.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- amoro flink connector and can be used for lookup joins
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TEMPORARY</span> <span style="color:#66d9ef">TABLE</span> Customers (
+</span></span><span style="display:flex;"><span>    id INT,
+</span></span><span style="display:flex;"><span>    name STRING,
+</span></span><span style="display:flex;"><span>    country STRING,
+</span></span><span style="display:flex;"><span>    zip STRING
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">WITH</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;connector&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mixed-format&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;metastore.url&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;mixed-format.catalog&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;mixed-format.database&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;mixed-format.table&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;lookup.cache.max-rows&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Create a temporary left table, like from kafka
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TEMPORARY</span> <span style="color:#66d9ef">TABLE</span> orders (
+</span></span><span style="display:flex;"><span>    order_id INT,
+</span></span><span style="display:flex;"><span>    total INT,
+</span></span><span style="display:flex;"><span>    customer_id INT,
+</span></span><span style="display:flex;"><span>    proc_time <span style="color:#66d9ef">AS</span> PROCTIME()
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">WITH</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;connector&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;kafka&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;topic&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;...&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;properties.bootstrap.servers&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;...&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;format&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;json&#39;</span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- enrich each order with customer information
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> o.order_id, o.total, <span style="color:#66d9ef">c</span>.country, <span style="color:#66d9ef">c</span>.zip
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> Orders <span style="color:#66d9ef">AS</span> o
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">JOIN</span> Customers <span style="color:#66d9ef">FOR</span> SYSTEM_TIME <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">OF</span> o.proc_time <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">c</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> o.customer_id <span style="color:#f92672">=</span> <span style="color:#66d9ef">c</span>.id;
+</span></span></code></pre></div><p>Lookup Options</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lookup.cache.max-rows</td>
+<td>10000</td>
+<td>Long</td>
+<td>No</td>
+<td>The maximum number of rows in the lookup cache, beyond which the oldest row will expire.</td>
+</tr>
+<tr>
+<td>lookup.reloading.interval</td>
+<td>10s</td>
+<td>Duration</td>
+<td>No</td>
+<td>Configuration option for specifying the interval in seconds to reload lookup data in RocksDB.</td>
+</tr>
+<tr>
+<td>lookup.cache.ttl-after-write</td>
+<td>0s</td>
+<td>Duration</td>
+<td>No</td>
+<td>The TTL after which the row will expire in the lookup cache.</td>
+</tr>
+<tr>
+<td>rocksdb.auto-compactions</td>
+<td>false</td>
+<td>Boolean</td>
+<td>No</td>
+<td>Enable automatic compactions during the initialization process. After the initialization completed, will enable the auto_compaction.</td>
+</tr>
+<tr>
+<td>rocksdb.writing-threads</td>
+<td>5</td>
+<td>Int</td>
+<td>No</td>
+<td>Writing data into rocksDB thread number.</td>
+</tr>
+<tr>
+<td>rocksdb.block-cache.capacity</td>
+<td>1048576</td>
+<td>Long</td>
+<td>No</td>
+<td>Use the LRUCache strategy for blocks, the size of the BlockCache can be configured based on your memory requirements and available system resources.</td>
+</tr>
+<tr>
+<td>rocksdb.block-cache.numShardBits</td>
+<td>-1</td>
+<td>Int</td>
+<td>No</td>
+<td>Use the LRUCache strategy for blocks. The cache is sharded to 2^numShardBits shards, by hash of the key. Default is -1, means it is automatically determined: every shard will be at least 512KB and number of shard bits will not exceed 6.</td>
+</tr>
+<tr>
+<td>other table parameters</td>
+<td>(none)</td>
+<td>String</td>
+<td>No</td>
+<td>All parameters of an Amoro table can be dynamically modified through SQL Hints, but they only take effect for this specific task. For the specific parameter list, please refer to the <a href="../configurations/">Table Configuration</a>. For permissions-related configurations on the catalog, they can also be configured in Hint using parameters such as <a href="../flink-ddl/#flink-sql">properties.auth.XXX in catalog DDL</a></td>
+</tr>
+</tbody>
+</table>
 </div>
                 
                     
@@ -998,6 +1143,7 @@
         <li><a href="#insert-into">INSERT INTO</a></li>
       </ul>
     </li>
+    <li><a href="#lookup-join-with-sql">Lookup join with SQL</a></li>
   </ul>
 </nav>
     </div>

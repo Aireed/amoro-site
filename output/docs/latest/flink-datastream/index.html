@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,16 +585,32 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="flink-datastream">Flink DataStream</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="flink-datastream">Flink DataStream</h1>
 <h2 id="add-maven-dependency">Add maven dependency</h2>
 <p>To add a dependency on Mixed-format flink connector in Maven, add the following to your pom.xml:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependencies&gt;</span>
 </span></span><span style="display:flex;"><span>  ...
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>com.netease.arctic<span style="color:#f92672">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- For example: amoro-flink-1.15 --&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>amoro-flink-${flink.minor-version}<span style="color:#f92672">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- For example: 0.6.1 --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.amoro<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- For example: amoro-mixed-format-flink-runtime-1.15 --&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>amoro-mixed-format-flink-runtime-${flink.minor-version}<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- For example: 0.7.0-incubating --&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>${amoro-mixed-format-flink.version}<span style="color:#f92672">&lt;/version&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;/dependency&gt;</span>
 </span></span><span style="display:flex;"><span>  ...
@@ -599,10 +623,10 @@
 <li>Non-primary key tables support reading full data in batch mode, snapshot data with a specified snapshot-id or timestamp, and incremental data with a specified snapshot interval.</li>
 <li>The primary key table temporarily only supports reading the current full amount and later CDC data.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.InternalCatalogBuilder;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.table.ArcticTableLoader;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.table.FlinkSource;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.table.TableIdentifier;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.InternalCatalogBuilder;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.table.FlinkSource;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.table.MixedFormatTableLoader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.table.TableIdentifier;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.datastream.DataStream;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.table.data.RowData;
@@ -619,7 +643,7 @@
 </span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">metastoreUrl</span>(<span style="color:#e6db74">&#34;thrift://&lt;url&gt;:&lt;port&gt;/&lt;catalog_name&gt;&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        TableIdentifier tableId <span style="color:#f92672">=</span> TableIdentifier.<span style="color:#a6e22e">of</span>(<span style="color:#e6db74">&#34;catalog_name&#34;</span>, <span style="color:#e6db74">&#34;database_name&#34;</span>, <span style="color:#e6db74">&#34;test_table&#34;</span>);
-</span></span><span style="display:flex;"><span>        ArcticTableLoader tableLoader <span style="color:#f92672">=</span> ArcticTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
+</span></span><span style="display:flex;"><span>        MixedFormatTableLoader tableLoader <span style="color:#f92672">=</span> MixedFormatTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> properties <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Default is true</span>
@@ -691,17 +715,17 @@
 <h3 id="streaming-mode">Streaming mode</h3>
 <p>Amoro supports reading incremental data in FileStore or LogStore through Java API in Streaming mode</p>
 <h3 id="streaming-mode-logstore">Streaming mode (LogStore)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.InternalCatalogBuilder;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.read.source.log.kafka.LogKafkaSource;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.table.ArcticTableLoader;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.util.ArcticUtils;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.table.ArcticTable;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.table.TableIdentifier;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.InternalCatalogBuilder;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.read.source.log.kafka.LogKafkaSource;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.table.MixedFormatTableLoader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.util.MixedFormatUtils;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.shade.org.apache.iceberg.Schema;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.table.MixedTable;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.table.TableIdentifier;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.api.common.eventtime.WatermarkStrategy;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.datastream.DataStream;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.table.data.RowData;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.iceberg.Schema;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
@@ -713,9 +737,9 @@
 </span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">metastoreUrl</span>(<span style="color:#e6db74">&#34;thrift://&lt;url&gt;:&lt;port&gt;/&lt;catalog_name&gt;&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        TableIdentifier tableId <span style="color:#f92672">=</span> TableIdentifier.<span style="color:#a6e22e">of</span>(<span style="color:#e6db74">&#34;catalog_name&#34;</span>, <span style="color:#e6db74">&#34;database_name&#34;</span>, <span style="color:#e6db74">&#34;test_table&#34;</span>);
-</span></span><span style="display:flex;"><span>        ArcticTableLoader tableLoader <span style="color:#f92672">=</span> ArcticTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
+</span></span><span style="display:flex;"><span>        MixedFormatTableLoader tableLoader <span style="color:#f92672">=</span> MixedFormatTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        ArcticTable table <span style="color:#f92672">=</span> ArcticUtils.<span style="color:#a6e22e">loadArcticTable</span>(tableLoader);
+</span></span><span style="display:flex;"><span>        MixedTable table <span style="color:#f92672">=</span> MixedFormatUtils.<span style="color:#a6e22e">loadMixedTable</span>(tableLoader);
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Read table All fields. If you only read some fields, you can construct the schema yourself, for example:</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Schema userSchema = new Schema(new ArrayList&lt;Types.NestedField&gt;() {{</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">//   add(Types.NestedField.optional(0, &#34;f_boolean&#34;, Types.BooleanType.get()));</span>
@@ -736,10 +760,10 @@
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="streaming-mode-filestore">Streaming mode (FileStore)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.InternalCatalogBuilder;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.table.ArcticTableLoader;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.table.FlinkSource;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.table.TableIdentifier;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.InternalCatalogBuilder;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.table.FlinkSource;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.table.MixedFormatTableLoader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.table.TableIdentifier;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.datastream.DataStream;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.table.data.RowData;
@@ -757,7 +781,7 @@
 </span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">metastoreUrl</span>(<span style="color:#e6db74">&#34;thrift://&lt;url&gt;:&lt;port&gt;/&lt;catalog_name&gt;&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        TableIdentifier tableId <span style="color:#f92672">=</span> TableIdentifier.<span style="color:#a6e22e">of</span>(<span style="color:#e6db74">&#34;catalog_name&#34;</span>, <span style="color:#e6db74">&#34;database_name&#34;</span>, <span style="color:#e6db74">&#34;test_table&#34;</span>);
-</span></span><span style="display:flex;"><span>        ArcticTableLoader tableLoader <span style="color:#f92672">=</span> ArcticTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
+</span></span><span style="display:flex;"><span>        MixedFormatTableLoader tableLoader <span style="color:#f92672">=</span> MixedFormatTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> properties <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Default value is true</span>
@@ -776,16 +800,16 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Submit and execute the task</span>
 </span></span><span style="display:flex;"><span>        env.<span style="color:#a6e22e">execute</span>(<span style="color:#e6db74">&#34;Test Mixed-format table streaming Read&#34;</span>);
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>} 
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>DataStream API supports reading primary key tables and non-primary key tables. The configuration items supported by properties can refer to Querying With SQL <a href="../flink-dml/">chapter Hint Option</a></p>
 <h2 id="writing-with-datastream">Writing with DataStream</h2>
 <p>Amoro table supports writing data to LogStore or FileStore through Java API</p>
 <h3 id="overwrite-data">Overwrite data</h3>
 <p>Amoro table currently Only supports the existing data in the dynamic Overwrite table of the non-primary key table</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.InternalCatalogBuilder;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.table.ArcticTableLoader;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.write.FlinkSink;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.table.TableIdentifier;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.InternalCatalogBuilder;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.table.MixedFormatTableLoader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.write.FlinkSink;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.table.TableIdentifier;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.datastream.DataStream;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.table.api.DataTypes;
@@ -805,7 +829,7 @@
 </span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">metastoreUrl</span>(<span style="color:#e6db74">&#34;thrift://&lt;url&gt;:&lt;port&gt;/&lt;catalog_name&gt;&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        TableIdentifier tableId <span style="color:#f92672">=</span> TableIdentifier.<span style="color:#a6e22e">of</span>(<span style="color:#e6db74">&#34;catalog_name&#34;</span>, <span style="color:#e6db74">&#34;database_name&#34;</span>, <span style="color:#e6db74">&#34;test_table&#34;</span>);
-</span></span><span style="display:flex;"><span>        ArcticTableLoader tableLoader <span style="color:#f92672">=</span> ArcticTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
+</span></span><span style="display:flex;"><span>        MixedFormatTableLoader tableLoader <span style="color:#f92672">=</span> MixedFormatTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        TableSchema flinkSchema <span style="color:#f92672">=</span> TableSchema.<span style="color:#a6e22e">builder</span>()
 </span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">field</span>(<span style="color:#e6db74">&#34;id&#34;</span>, DataTypes.<span style="color:#a6e22e">INT</span>())
@@ -823,15 +847,15 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Submit and execute the task</span>
 </span></span><span style="display:flex;"><span>        env.<span style="color:#a6e22e">execute</span>(<span style="color:#e6db74">&#34;Test Mixed-format table overwrite&#34;</span>);
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>} 
 </span></span></code></pre></div><h3 id="appending-data">Appending data</h3>
 <p>For the Amoro table, it supports specifying to write data to FileStore or LogStore through Java API.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.InternalCatalogBuilder;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.table.ArcticTableLoader;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.util.ArcticUtils;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.flink.write.FlinkSink;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.table.ArcticTable;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.netease.arctic.table.TableIdentifier;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.InternalCatalogBuilder;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.table.MixedFormatTableLoader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.util.MixedFormatUtils;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.flink.write.FlinkSink;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.table.MixedTable;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.table.TableIdentifier;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.datastream.DataStream;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.flink.table.api.DataTypes;
@@ -851,7 +875,7 @@
 </span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">metastoreUrl</span>(<span style="color:#e6db74">&#34;thrift://&lt;url&gt;:&lt;port&gt;/&lt;catalog_name&gt;&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        TableIdentifier tableId <span style="color:#f92672">=</span> TableIdentifier.<span style="color:#a6e22e">of</span>(<span style="color:#e6db74">&#34;catalog_name&#34;</span>, <span style="color:#e6db74">&#34;database_name&#34;</span>, <span style="color:#e6db74">&#34;test_table&#34;</span>);
-</span></span><span style="display:flex;"><span>        ArcticTableLoader tableLoader <span style="color:#f92672">=</span> ArcticTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
+</span></span><span style="display:flex;"><span>        MixedFormatTableLoader tableLoader <span style="color:#f92672">=</span> MixedFormatTableLoader.<span style="color:#a6e22e">of</span>(tableId, catalogBuilder);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        TableSchema flinkSchema <span style="color:#f92672">=</span> TableSchema.<span style="color:#a6e22e">builder</span>()
 </span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">field</span>(<span style="color:#e6db74">&#34;id&#34;</span>, DataTypes.<span style="color:#a6e22e">INT</span>())
@@ -859,9 +883,9 @@
 </span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">field</span>(<span style="color:#e6db74">&#34;op_time&#34;</span>, DataTypes.<span style="color:#a6e22e">TIMESTAMP_WITH_LOCAL_TIME_ZONE</span>())
 </span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">build</span>();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        ArcticTable table <span style="color:#f92672">=</span> ArcticUtils.<span style="color:#a6e22e">loadArcticTable</span>(tableLoader);
+</span></span><span style="display:flex;"><span>        MixedTable table <span style="color:#f92672">=</span> MixedFormatUtils.<span style="color:#a6e22e">loadMixedTable</span>(tableLoader);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        table.<span style="color:#a6e22e">properties</span>().<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;arctic.emit.mode&#34;</span>, <span style="color:#e6db74">&#34;log,file&#34;</span>);
+</span></span><span style="display:flex;"><span>        table.<span style="color:#a6e22e">properties</span>().<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;mixed-format.emit.mode&#34;</span>, <span style="color:#e6db74">&#34;log,file&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        FlinkSink
 </span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">forRowData</span>(input)
@@ -876,8 +900,8 @@
 </span></span></code></pre></div><p>The DataStream API supports writing to primary key tables and non-primary key tables. The configuration items supported by properties can refer to Writing With SQL <a href="../flink-dml/">chapter Hint Options</a></p>
 <blockquote>
 <p><strong>TIPS</strong></p>
-<p>arctic.emit.mode contains log, you need to configure log-store.enabled = true <a href="../flink-dml/">Enable Log Configuration</a></p>
-<p>arctic.emit.mode When file is included, the primary key table will only be written to ChangeStore, and the non-primary key table will be directly written to BaseStore.</p>
+<p>mixed-format.emit.mode contains log, you need to configure log-store.enabled = true <a href="../flink-dml/">Enable Log Configuration</a></p>
+<p>mixed-format.emit.mode When file is included, the primary key table will only be written to ChangeStore, and the non-primary key table will be directly written to BaseStore.</p>
 </blockquote>
 </div>
                 

@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,7 +585,23 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="using-logstore">Using Logstore</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="using-logstore">Using Logstore</h1>
 <p>Due to the limitations of traditional offline data warehouse architectures in supporting real-time business needs, real-time data warehousing has experienced rapid evolution in recent years. In the architecture of real-time data warehousing, Apache Kafka is often used as the storage system for real-time data. However, this also brings about the issue of data disconnection between offline data warehouses.</p>
 <p>Developers often need to pay attention to data stored in HDFS as well as data in Kafka, which increases the complexity of business development. Therefore, Amoro proposes the addition of an optional parameter, &ldquo;LogStore enabled&rdquo; (<code>log-store.enabled</code>), to the table configuration. This allows for retrieving data with sub-second and minute-level latency by operating on a single table while ensuring the eventual consistency of data from both sources.</p>
 <h2 id="real-time-data-in-logstore">Real-Time data in LogStore</h2>
@@ -641,7 +665,7 @@
 </span></span><span style="display:flex;"><span>    name string,
 </span></span><span style="display:flex;"><span>    ts <span style="color:#66d9ef">timestamp</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span> (id)
-</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">using</span> arctic
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">using</span> mixed_iceberg
 </span></span><span style="display:flex;"><span>tblproperties (
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;log-store.enabled&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>,
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;log-store.topic&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;topic_log_test&#34;</span>,
@@ -650,7 +674,7 @@
 </span></span></code></pre></div><ul>
 <li>You can also use Flink SQL to create tables in Flink-SQL-Client</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- First use the use catalog command to switch to the arctic catalog.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- First use the use catalog command to switch to the mixed-format catalog.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> db.log_table (
 </span></span><span style="display:flex;"><span>    id int,
 </span></span><span style="display:flex;"><span>    name string,
@@ -661,9 +685,9 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;log-store.topic&#39;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;topic_log_test&#39;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;log-store.address&#39;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;localhost:9092&#39;</span>);
 </span></span></code></pre></div><h3 id="double-write-logstore-and-filestore">Double write LogStore and FileStore</h3>
-<p><img src="../images/flink/auto-writer.png" alt="Introduce"></p>
+<p><img src="../../images/flink/double-write.png" alt="Introduce"></p>
 <p>Amoro Connector writes data to LogStore and ChangeStore at the same time through double-write operations, without opening Kafka transactions to ensure data consistency between the two, because opening transactions will bring a few minutes of delay to downstream tasks (the specific delay time depends on upstream tasks checkpoint interval).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> db.log_table <span style="color:#75715e">/*+ OPTIONS(&#39;arctic.emit.mode&#39;=&#39;log&#39;) */</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> db.log_table <span style="color:#75715e">/*+ OPTIONS(&#39;mixed-format.emit.mode&#39;=&#39;log&#39;) */</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, name, ts <span style="color:#66d9ef">from</span> sourceTable;
 </span></span></code></pre></div><blockquote>
 <p>Currently, only the Apache Flink engine implements the dual-write LogStore and FileStore.</p>

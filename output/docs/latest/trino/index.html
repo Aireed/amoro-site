@@ -162,6 +162,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.7.0/">0.7.0-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.6.1/">0.6.1</a>
                             </li class="topnav-page-selection">
                         
@@ -474,6 +478,10 @@
                         </li>
                     
                         <li>
+                            <a href="../paimon-format/">Paimon</a>
+                        </li>
+                    
+                        <li>
                             <a href="../mixed-iceberg-format/">Mixed-Iceberg</a>
                         </li>
                     
@@ -577,7 +585,23 @@
 
             
             <div id="content" class="markdown-body">
-                <div class="margin-for-toc"><h1 id="trino">Trino</h1>
+                <div class="margin-for-toc"><!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
+<h1 id="trino">Trino</h1>
 <h2 id="iceberg-format">Iceberg format</h2>
 <p>Iceberg format can be accessed using the Iceberg Connector provided by Trino.
 please refer to the documentation at <a href="https://trino.io/docs/current/connector/iceberg.html#">Iceberg Trino user manual</a> for more information.</p>
@@ -588,11 +612,11 @@ please refer to the documentation at <a href="https://paimon.apache.org/docs/mas
 <h3 id="install">Install</h3>
 <ul>
 <li>Create the {trino_home}/plugin/amoro directory in the Trino installation package,
-and extract the contents of the amoro-trino package trino-amoro-xx-SNAPSHOT.tar.gz to the {trino_home}/plugin/amoro directory.</li>
+and extract the contents of the amoro-trino package amoro-mixed-format-trino-xx.tar.gz to the {trino_home}/plugin/amoro directory.</li>
 <li>Configure the Catalog configuration file for Amoro in the {trino_home}/etc/catalog directory, for example:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span>connector.name=arctic
-</span></span><span style="display:flex;"><span>arctic.url=thrift://{ip}:{port}/{catalogName}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span>connector.name=mixed-format
+</span></span><span style="display:flex;"><span>amoro.url=thrift://{ip}:{port}/{catalogName}
 </span></span></code></pre></div><ul>
 <li>Configure the JVM configuration file for Trino in the {trino_home}/etc directory named <code>jvm.config</code> :</li>
 </ul>
@@ -692,11 +716,11 @@ The change records of the table can be queried through the ChangeStore, and the 
 </table>
 <h3 id="trino-uses-proxy-user-to-access-hadoop-cluster">Trino uses proxy user to access Hadoop cluster.</h3>
 <p>By default, when Trino queries Amoro, it uses the Hadoop user configured in the <a href="../managing-catalogs/#create-catalog">catalog creation</a> to access the Hadoop cluster.
-To use Trino&rsquo;s user to access the Hadoop cluster, you need enable Hadoop impersonation by adding the arctic.hdfs.impersonation.enabled=true parameter in the Amoro catalog configuration file located in the {trino_home}/etc/catalog directory, as follows.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span>connector.name=arctic
-</span></span><span style="display:flex;"><span>arctic.url=thrift://{ip}:{port}/{catalogName}
-</span></span><span style="display:flex;"><span>arctic.hdfs.impersonation.enabled=true
-</span></span></code></pre></div><p><code>arctic.hdfs.impersonation.enabled</code> default false</p>
+To use Trino&rsquo;s user to access the Hadoop cluster, you need enable Hadoop impersonation by adding the mixed-format.hdfs.impersonation.enabled=true parameter in the Amoro catalog configuration file located in the {trino_home}/etc/catalog directory, as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span>connector.name=mixed-format
+</span></span><span style="display:flex;"><span>amoro.url=thrift://{ip}:{port}/{catalogName}
+</span></span><span style="display:flex;"><span>mixed-format.hdfs.impersonation.enabled=true
+</span></span></code></pre></div><p><code>mixed-format.hdfs.impersonation.enabled</code> default false</p>
 <div class="info">
     To use Hadoop impersonation, you need to enable the proxy feature for the Hadoop user configured in the <a href="../managing-catalogs/#create-catalog">catalog creation</a> in the Hadoop cluster beforehand，
 and make sure that it can proxy the Trino querying user. Please refer to <a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/Superusers.html#Configurations">Hadoop Proxy User</a> for more information.
