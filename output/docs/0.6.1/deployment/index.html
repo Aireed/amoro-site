@@ -687,59 +687,59 @@ The configuration for kyuubi mode can refer to: <a href="../using-kyuubi/">Using
 <p>The following environment variables take effect during the startup process of AMS,
 you can set up those environments to overwrite the default value.</p>
 <table>
-<thead>
-<tr>
-<th>Environments variable name</th>
-<th>Default value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AMORO_CONF_DIR</td>
-<td>${AMORO_HOME}/conf</td>
-<td>location where Amoro loading config files.</td>
-</tr>
-<tr>
-<td>AMORO_LOG_DIR</td>
-<td>${AMORO_HOME}/logs</td>
-<td>location where the logs files output</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Environments variable name</th>
+          <th>Default value</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AMORO_CONF_DIR</td>
+          <td>${AMORO_HOME}/conf</td>
+          <td>location where Amoro loading config files.</td>
+      </tr>
+      <tr>
+          <td>AMORO_LOG_DIR</td>
+          <td>${AMORO_HOME}/logs</td>
+          <td>location where the logs files output</td>
+      </tr>
+  </tbody>
 </table>
 <p>Note: <code>$AMORO_HOME</code> can&rsquo;t be overwritten from environment variable. It always points to the parent dir of <code>./bin</code>.</p>
 <h3 id="configure-ams-jvm">Configure AMS JVM</h3>
 <p>The following JVM options could be set in <code>${AMORO_CONF_DIR}/jvm.properties</code>.</p>
 <table>
-<thead>
-<tr>
-<th>Property Name</th>
-<th>Related Jvm option</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>xms</td>
-<td>&ldquo;-Xms${value}m</td>
-<td>Xms config for jvm</td>
-</tr>
-<tr>
-<td>xmx</td>
-<td>&ldquo;-Xmx${value}m</td>
-<td>Xmx config for jvm</td>
-</tr>
-<tr>
-<td>jmx.remote.port</td>
-<td>&ldquo;-Dcom.sun.management.jmxremote.port=${value}</td>
-<td>Enable remote debug</td>
-</tr>
-<tr>
-<td>extra.options</td>
-<td>&ldquo;JAVA_OPTS=&quot;${JAVA_OPTS} ${JVM_EXTRA_CONFIG}&rdquo;</td>
-<td>The addition jvm options</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Property Name</th>
+          <th>Related Jvm option</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>xms</td>
+          <td>&ldquo;-Xms${value}m</td>
+          <td>Xms config for jvm</td>
+      </tr>
+      <tr>
+          <td>xmx</td>
+          <td>&ldquo;-Xmx${value}m</td>
+          <td>Xmx config for jvm</td>
+      </tr>
+      <tr>
+          <td>jmx.remote.port</td>
+          <td>&ldquo;-Dcom.sun.management.jmxremote.port=${value}</td>
+          <td>Enable remote debug</td>
+      </tr>
+      <tr>
+          <td>extra.options</td>
+          <td>&ldquo;JAVA_OPTS=&quot;${JAVA_OPTS} ${JVM_EXTRA_CONFIG}&rdquo;</td>
+          <td>The addition jvm options</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="start-ams">Start AMS</h2>
 <p>Enter the directory amoro-x.y.z and execute bin/ams.sh start to start AMS.</p>
