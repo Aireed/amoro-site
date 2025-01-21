@@ -652,8 +652,8 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">ingressClassName</span>: <span style="color:#e6db74">&#34;nginx&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">minikube.amoro.com</span>
 </span></span></code></pre></div><h3 id="configure-the-database">Configure the database.</h3>
-<p>AMS default is to use Derby database for storage. When the pod is destroyed, the data will also disappear.
-In production environments, we recommend using a RDBMS as the storage for system data, you can ref to <a href="../deployment/#configure-system-database">Database Configuration</a> for more detail.</p>
+<p>AMS uses embedded <a href="https://db.apache.org/derby/">Apache Derby</a> as its backend storage by default.
+In production environments, we recommend using a RDBMS(Relational Database Management System) with higher availability guarantees as the storage for system data, you can ref to <a href="../deployment/#configure-system-database">Database Configuration</a> for more detail.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">amoroConf</span>: 
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">database</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">${your_database_type}</span>
