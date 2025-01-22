@@ -594,8 +594,7 @@
 <h2 id="system-requirements">System requirements</h2>
 <ul>
 <li>Java 8 is required.</li>
-<li>Optional: MySQL 5.5 or higher</li>
-<li>Optional: PostgreSQL 14.x or higher</li>
+<li>Optional: A RDBMS (PostgreSQL 14.x or higher, MySQL 5.5 or higher)</li>
 <li>Optional: ZooKeeper 3.4.x or higher</li>
 </ul>
 <h2 id="download-the-distribution">Download the distribution</h2>
@@ -647,31 +646,21 @@ Unzip it to create the amoro-x.y.z directory in the same directory, and then go 
     Make sure the port is not used before configuring it.
 </div>
 <h3 id="configure-system-database">Configure system database</h3>
-<p>You can use MySQL/PostgreSQL as the system database instead of the default Derby.</p>
+<p>AMS uses embedded <a href="https://db.apache.org/derby/">Apache Derby</a> as the backend storage by default, so you can use <code>Derby</code> directly without any additional configuration.</p>
+<p>You can also configure a relational backend storage as you needed.</p>
+<blockquote>
 <p>If you would like to use MySQL as the system database, you need to manually download the <a href="https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.1.0/mysql-connector-j-8.1.0.jar">MySQL JDBC Connector</a>
-and move it into the <code>{AMORO_HOME}/lib/</code> directory. You can use the following command to complete these operations:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ cd <span style="color:#e6db74">${</span>AMORO_HOME<span style="color:#e6db74">}</span>
-</span></span><span style="display:flex;"><span>$ MYSQL_JDBC_DRIVER_VERSION<span style="color:#f92672">=</span>8.0.30
-</span></span><span style="display:flex;"><span>$ wget https://repo1.maven.org/maven2/mysql/mysql-connector-java/<span style="color:#e6db74">${</span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#e6db74">}</span>/mysql-connector-java-<span style="color:#e6db74">${</span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#e6db74">}</span>.jar
-</span></span><span style="display:flex;"><span>$ mv mysql-connector-java-<span style="color:#e6db74">${</span>MYSQL_JDBC_DRIVER_VERSION<span style="color:#e6db74">}</span>.jar lib
-</span></span></code></pre></div><p>Create an empty database in MySQL/PostgreSQL, then AMS will automatically create tables in this MySQL/PostgreSQL database when it first started.</p>
-<p>One thing you need to do is Adding MySQL/PostgreSQL configuration under <code>config.yaml</code> of Ams:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># MySQL</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">ams</span>:
+and move it into the <code>${AMORO_HOME}/lib/</code> directory.</p>
+</blockquote>
+<p>You need to create an empty database in the RDBMS before to start the server, then AMS will automatically create tables in the database when it first started.</p>
+<p>One thing you need to do is adding configuration under <code>config.yaml</code> of Ams:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">ams</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">database</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">mysql</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">jdbc-driver-class</span>: <span style="color:#ae81ff">com.mysql.cj.jdbc.Driver</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">url</span>: <span style="color:#ae81ff">jdbc:mysql://127.0.0.1:3306/amoro?useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true&amp;useAffectedRows=true&amp;allowPublicKeyRetrieval=true&amp;useSSL=false</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">username</span>: <span style="color:#ae81ff">root</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>: <span style="color:#ae81ff">root</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># PostgreSQL</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#ams:</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#  database:</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#    type: postgres</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#    jdbc-driver-class: org.postgresql.Driver</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#    url: jdbc:postgresql://127.0.0.1:5432/amoro</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#    username: user</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#    password: passwd</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">${database_type}</span> <span style="color:#75715e"># postgres or mysql</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">jdbc-driver-class</span>: <span style="color:#ae81ff">${your_driver_name}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">url</span>: <span style="color:#ae81ff">${your_jdbc_url}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">username</span>: <span style="color:#ae81ff">${your_username}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>: <span style="color:#ae81ff">${your_password}</span>
 </span></span></code></pre></div><h3 id="configure-high-availability">Configure high availability</h3>
 <p>To improve stability, AMS supports a one-master-multi-backup HA mode. Zookeeper is used to implement leader election,
 and the AMS cluster name and Zookeeper address are specified. The AMS cluster name is used to bind different AMS clusters
@@ -851,7 +840,7 @@ successful. The default username and password for login are both &ldquo;admin&rd
 </span></span><span style="display:flex;"><span>$ bin/ams.sh stop
 </span></span></code></pre></div><h2 id="upgrade-ams">Upgrade AMS</h2>
 <h3 id="upgrade-system-databases">Upgrade system databases</h3>
-<p>You can find all the upgrade SQL scripts under <code>{AMORO_HOME}/conf/mysql/</code> with name pattern <code>upgrade-a.b.c-to-x.y.z.sql</code>.
+<p>You can find all the upgrade SQL scripts under <code>${AMORO_HOME}/conf/${db_type}/</code> with name pattern <code>upgrade-a.b.c-to-x.y.z.sql</code>.
 Execute the upgrade SQL scripts one by one to your system database based on your starting and target versions.</p>
 <h3 id="replace-all-libs-and-plugins">Replace all libs and plugins</h3>
 <p>Replace all contents in the original <code>{AMORO_HOME}/lib</code> directory with the contents in the lib directory of the new installation package.
